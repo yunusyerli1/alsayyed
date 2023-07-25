@@ -1,0 +1,22 @@
+
+.text-rotate {
+  display: flex;
+  align-items: end;
+  transform: rotate(90deg);
+  height: 150px;
+}
+
+@media (max-width: 576px) {
+  .fs-120 {
+    font-size: calc(1vw + 5rem);
+  }
+}
+
+.background {
+  background-image: url("../../../assets/img/bg-home.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+}
+

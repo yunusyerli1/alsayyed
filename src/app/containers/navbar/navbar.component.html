@@ -1,0 +1,10 @@
+<div class="custom-navbar">
+
+  <div class="navbar-links">
+      <ul>
+        <li *ngFor="let item of navItems">
+          <a [routerLink]="item.route" [ngClass]="item.isFeatured ? 'btn-request':'none'">{{item.title}}</a>
+        </li>
+      </ul>
+  </div>
+</div>

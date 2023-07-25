@@ -1,0 +1,35 @@
+<nav class="sidebar-container d-flex flex-column align-items-center fs-20 pt-5 px-4">
+
+    <div class="sidebar-image"></div>
+    <span class="fw-bold mt-4">Yunus Yerli</span>
+    <p>Frontend Developer</p>
+    <div class="d-flex flex-column gap-3 mt-5" >
+      <a [routerLink]="item.route" routerLinkActive="active-link" class="secondary-hover" *ngFor="let item of menuItems">
+        <span>{{item.title}}</span>
+        <app-svg-image [iconName]="'angle-double-right'"></app-svg-image>
+      </a>
+    </div>
+
+    <ul class="d-flex gap-1 circle-icon-menu">
+      <li class="linkedin">
+        <a href="https://www.linkedin.com/in/yunusyerli/" target="_blank" rel="noopener" title="Linkedin">
+          <app-svg-image [width]="'20px'" [height]="'20px'" [iconName]="'linkedin'"></app-svg-image>
+        </a>
+      </li>
+      <li class="github">
+        <a href="https://github.com/yunusyerli1" target="_blank" rel="noopener" title="Github">
+          <app-svg-image [width]="'20px'" [height]="'20px'" [iconName]="'github'"></app-svg-image>
+        </a>
+      </li>
+      <li class="twitter">
+        <a href="https://twitter.com/angularious" target="_blank" rel="noopener" title="Twitter" class="shadow">
+          <app-svg-image [width]="'20px'" [height]="'20px'" [iconName]="'twitter'"></app-svg-image>
+        </a>
+      </li>
+      <li class="email">
+        <a href="mailto:yunusyerli1@gmail.com" target="_blank" rel="noopener" title="Email">
+          <app-svg-image [width]="'20px'" [height]="'20px'" [iconName]="'envelope'"></app-svg-image>
+        </a>
+      </li>
+    </ul>
+</nav>

@@ -1,0 +1,19 @@
+<div class="list-container" [ngClass]="isButtonClicked  ? 'active': ''">
+  <button class="more-button" aria-label="Menu Button" (click)="isButtonClicked=!isButtonClicked">
+    <div class="menu-icon-wrapper">
+      <div class="menu-icon-line half first"></div>
+      <div class="menu-icon-line"></div>
+      <div class="menu-icon-line half last"></div>
+    </div>
+  </button>
+  <ul class="more-button-list">
+      <ng-container *ngFor="let item of menuItems">
+          <li class="more-button-list-item">
+            <a [routerLink]="item.route">
+              <app-svg-image [width]="'20px'" [height]="'20px'" [iconName]="item.icon" [color]="'black'"></app-svg-image>
+              <span>{{item.title}}</span>
+            </a></li>
+      </ng-container>
+  </ul>
+</div>
+
