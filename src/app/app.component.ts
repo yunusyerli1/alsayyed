@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { INavbar } from './models/INavbar';
 
 @Component({
   selector: 'app-root',
@@ -10,29 +11,48 @@ export class AppComponent {
 
   sideMenu = [
     {
-      title: "Home",
+      title: "1.Liste",
       icon: "home",
-      route: "home"
+      route: "list-first"
     },
     {
-      title: "Portfolio",
+      title: "2.Liste",
       icon: "bag",
       route: "portfolio"
     },
     {
-      title: "Service",
+      title: "3.Liste",
       icon: "wrench",
       route: "service"
     },
     {
-      title: "Skills",
+      title: "4.Liste",
       icon: "database",
       route: "skills"
     },
     {
-      title: "Contact",
+      title: "5.Liste",
       icon: "postcard",
       route: "contact"
     }
+  ]
+
+  menuItems:INavbar[] = [
+    {
+      title: "Home",
+      route: "/home",
+      isFeatured: false
+    },
+    {
+      title: "Portfolio",
+      route: "/portfolio",
+      isFeatured: false
+    },
+    {
+      title: "Contact",
+      route: "/contact",
+      isFeatured: true
+    },
+
   ]
 }

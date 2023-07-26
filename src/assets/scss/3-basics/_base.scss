@@ -23,15 +23,8 @@ body {
   height: 100%;
 }
 
-sidebar {
-  grid-area: sidebar;
-  display: flex;
-}
 
-main {
-  grid-area: main;
-  display: flex;
-}
+
 
 @media (max-width: 768px) {
   .grid-container {

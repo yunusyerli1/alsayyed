@@ -12,6 +12,7 @@ import { SidebarResponsiveComponent } from './containers/sidebar-responsive/side
 import { NavbarComponent } from './containers/navbar/navbar.component';
 import { SvgImageComponent } from './components/svg-image/svg-image.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ListFirstComponent } from './views/list-first/list-first.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NotFoundComponent,
     SidebarResponsiveComponent,
     NavbarComponent,
+    ListFirstComponent,
 
   ],
   imports: [

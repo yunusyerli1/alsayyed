@@ -1,0 +1,16 @@
+.main {
+  background-image: url("../assets/img/bg-home.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .responsiveButton{
+      z-index: 220;
+      position: fixed;
+      bottom: 4rem;
+      right: 2rem;
+  }
+}
