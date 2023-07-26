@@ -1,0 +1,31 @@
+    $primary:#1f2126;
+    $secondary: #304ffe;
+    $success: #2CC84D;
+    $info: #6f42c1;
+    $warning: #f6ff00;
+    $danger: #F9423A;
+    $light: #f8f9fa;
+    $dark: #002B49;
+    $gold:#D4AD67;
+    $red: #F9423A;
+    $green:#2CC84D;
+    $white: #fff;
+    $black: #000000;
+    $gray: #4b4f5d;
+    $light-gray: #E6E9EB;
+    $gray-dark: #343a40;
+    $body-color: #f7f7f7;
+
+
+    //Custom bootstrap colors
+    $theme-colors: (
+      "primary": $primary,
+      "secondary": $secondary,
+      "success": $success,
+      "info": $info,
+      "warning": $warning,
+      "danger": $danger
+    );
+
+    $sidebar-width: 260px;
+

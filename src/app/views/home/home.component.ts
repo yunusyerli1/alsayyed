@@ -10,8 +10,8 @@ export class HomeComponent {
 
   menuItems:INavbar[] = [
     {
-      title: "Skills",
-      route: "/skills",
+      title: "Home",
+      route: "/home",
       isFeatured: false
     },
     {

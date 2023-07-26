@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  color-scheme: light dark;
+}
 
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@import "./assets/scss/1-helpers/variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@import "./assets/scss/1-helpers/mixins";
+
+@import "./assets/scss/3-basics/base";
+@import "./assets/scss/3-basics/links";
+@import "./assets/scss/3-basics/typography";

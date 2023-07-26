@@ -7,4 +7,32 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'alsayyed';
+
+  sideMenu = [
+    {
+      title: "Home",
+      icon: "home",
+      route: "home"
+    },
+    {
+      title: "Portfolio",
+      icon: "bag",
+      route: "portfolio"
+    },
+    {
+      title: "Service",
+      icon: "wrench",
+      route: "service"
+    },
+    {
+      title: "Skills",
+      icon: "database",
+      route: "skills"
+    },
+    {
+      title: "Contact",
+      icon: "postcard",
+      route: "contact"
+    }
+  ]
 }

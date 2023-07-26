@@ -1,0 +1,17 @@
+//Color for hover e.g. secondary-hover
+@each $color-name, $color in $theme-colors {
+  .#{$color-name}-hover {
+    transition: all 300ms ease-in-out;
+
+    &:hover {
+      color: $color
+    }
+  }
+}
+
+
+@for $i from 10 through 200 {
+  .fs-#{$i} {
+    font-size: $i + px;
+  }
+}

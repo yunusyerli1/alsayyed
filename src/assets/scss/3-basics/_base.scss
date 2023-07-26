@@ -1,0 +1,44 @@
+@import '../3-basics/typography';
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: $muli;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $primary;
+  background-color: $body-color;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "sidebar"
+    "main";
+  grid-template-rows: 1fr;
+  grid-template-columns: $sidebar-width 1fr;
+  height: 100%;
+}
+
+sidebar {
+  grid-area: sidebar;
+  display: flex;
+}
+
+main {
+  grid-area: main;
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-areas:
+      "main";
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    height: 100%;
+  }
+}

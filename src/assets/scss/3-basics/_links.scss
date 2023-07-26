@@ -1,0 +1,28 @@
+a {
+  text-decoration: none;
+  color: $primary;
+}
+
+a.clickable {
+  color: $secondary;
+  cursor: pointer;
+}
+
+a.clickable:hover {
+  color: $secondary;
+  text-decoration: underline;
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 1em;
+}
+
+ul li::marker {
+  color: $secondary;
+}
+
+.cpointer {
+  cursor: pointer;
+}
+
