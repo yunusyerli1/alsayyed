@@ -12,7 +12,6 @@ body {
   background-color: $body-color;
 }
 
-
 .grid-container {
   display: grid;
   grid-template-areas:
@@ -22,9 +21,6 @@ body {
   grid-template-columns: $sidebar-width 1fr;
   height: 100%;
 }
-
-
-
 
 @media (max-width: 768px) {
   .grid-container {

@@ -2,21 +2,17 @@
 
   <div class="d-none d-md-block  sidebar">
     <app-sidebar [menuItems]="sideMenu"></app-sidebar>
-
   </div>
 
-  <div class="main container">
+  <div class="main container-fluid">
     <div class="row mt-3">
       <app-navbar [navItems]="menuItems"></app-navbar>
     </div>
-    <div class="row mt-3">
-      <div class="d-md-none responsiveButton">
-        <app-sidebar-responsive [menuItems]="sideMenu"></app-sidebar-responsive>
-    </div>
-      <router-outlet></router-outlet>
+    <div class="d-md-none responsiveButton">
+      <app-sidebar-responsive [menuItems]="sideMenu"></app-sidebar-responsive>
     </div>
 
+    <router-outlet></router-outlet>
 
   </div>
-
 </div>
