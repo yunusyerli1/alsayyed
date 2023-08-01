@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { INavbar } from 'src/app/models/INavbar';
+import { INavbarModel } from 'src/app/models/INavbarModel';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +8,7 @@ import { INavbar } from 'src/app/models/INavbar';
 })
 export class NavbarComponent {
 
-  @Input() navItems: INavbar[]= [];
+  @Input() navItems: INavbarModel[]= [];
 
 
 

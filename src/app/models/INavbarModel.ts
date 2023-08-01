@@ -1,4 +1,4 @@
-export interface INavbar {
+export interface INavbarModel {
   title: string;
   route: string;
   isFeatured: boolean;

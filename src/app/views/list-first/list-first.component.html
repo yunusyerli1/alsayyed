@@ -1,1 +1,147 @@
-<p>list-first works!</p>
+<div class="mt-3">
+  <h1>1.Liste</h1>
+  <form class="mt-5" [formGroup]="listFirstForm" (ngSubmit)="onSubmit()">
+    <div class="row row-cols-4  mb-3">
+      <div class="col mb-3">
+        <label for="category">Category:</label>
+          <input type="text" class="form-control"  id="category" placeholder="Rings" formControlName="category">
+        </div>
+
+        <div class="col mb-3">
+          <label for="category">Design Brand:</label>
+          <input type="text" class="form-control" id="designBrand" placeholder="RSDX"  formControlName="designBrand">
+        </div>
+
+        <div class="col mb-3">
+          <label for="quantity">Miktar:</label>
+          <input type="text" class="form-control" id="quantity" placeholder="20 Adet"  formControlName="quantity">
+        </div>
+
+        <div class="col mb-3">
+          <label for="dimensionDefault">Default Dimension:</label>
+          <input type="text" class="form-control" id="dimensionDefault" placeholder="Dimension Default"  formControlName="dimensionDefault">
+        </div>
+
+        <div class="col mb-3">
+          <label for="componentType">Component Type:</label>
+          <select class="form-select" id="componentType" (change)="changeComponentType($event)" formControlName="componentType">
+            <option selected disabled>Choose One...</option>
+            <option value="Single Component">Single Component</option>
+            <option value="Set">Set</option>
+            <option value="Set-Component">Set Component</option>
+          </select>
+        </div>
+
+        <div class="col mb-3">
+          <label for="rawMaterial">Raw Material:</label>
+          <select class="form-select" id="rawMaterial" (change)="changeRawMaterial($event)" formControlName="rawMaterial">
+            <option selected disabled>Choose One...</option>
+            <option value="Yellow Resin">Yellow Resin</option>
+            <option value="Red Resin">Red Resin</option>
+          </select>
+        </div>
+
+        <div class="col mb-3">
+          <label for="style">Style:</label>
+          <select class="form-select" id="style" (change)="changeStyle($event)" formControlName="style">
+            <option selected disabled>Choose One...</option>
+            <option value="With Stone">With Stone</option>
+            <option value="No Stone">No Stone</option>
+          </select>
+        </div>
+
+        <div class="col mb-3">
+          <label for="fullsetAttribute">Fullset Attribute:</label>
+          <input type="text" class="form-control" id="fullsetAttribute" placeholder="Fullset Attribute"  formControlName="fullsetAttribute">
+        </div>
+
+
+
+
+
+
+
+        <!-- <div class="col mb-3">
+          <input type="text" class="form-control" id="dimensionOne" placeholder="Dimension 1"  formControlName="dimensionOne">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="dimensionTwo" placeholder="Dimension 2"  formControlName="dimensionTwo">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="dimensionThree" placeholder="Dimension 3"  formControlName="dimensionThree">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="dimensionFour" placeholder="Dimension 4"  formControlName="dimensionFour">
+        </div> -->
+
+        <!-- <div class="col mb-3">
+          <input type="text" class="form-control" id="relatedOne" placeholder="Related 1"  formControlName="relatedOne">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="relatedTwo" placeholder="Related 2"  formControlName="relatedTwo">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="relatedThree" placeholder="Related 3"  formControlName="relatedThree">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="relatedFour" placeholder="Related 4"  formControlName="relatedFour">
+        </div> -->
+
+        <!-- <div class="col mb-3">
+          <input type="text" class="form-control" id="ringSizeOne" placeholder="Ring Size 1"  formControlName="ringSizeOne">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="ringSizeTwo" placeholder="Ring Size 2"  formControlName="ringSizeTwo">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="ringSizeThree" placeholder="Ring Size 3"  formControlName="ringSizeThree">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="ringSizeFour" placeholder="Ring Size 4"  formControlName="ringSizeFour">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="ringSizeFive" placeholder="Ring Size 5"  formControlName="ringSizeFive">
+        </div> -->
+
+
+
+        <!-- <div class="col mb-3">
+          <input type="text" class="form-control" id="weightResin" placeholder="Resin Weight"  formControlName="weightResin">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="weight22" placeholder="Weight 22"  formControlName="weight22">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="weight21" placeholder="Weight 21"  formControlName="weight21">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="weight18" placeholder="Weight 18"  formControlName="weight18">
+        </div>
+
+        <div class="col mb-3">
+          <input type="text" class="form-control" id="weight14" placeholder="Weight 14"  formControlName="weight14">
+        </div> -->
+
+
+    </div>
+
+
+    <div class="d-flex justify-content-end mb-3">
+      <button class="btn btn-secondary px-3" type="submit" [disabled]="!listFirstForm.valid">Submit</button>
+    </div>
+
+  </form>
+</div>

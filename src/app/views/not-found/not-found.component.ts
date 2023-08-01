@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { INavbar } from 'src/app/models/INavbar';
 
 @Component({
   selector: 'app-not-found',

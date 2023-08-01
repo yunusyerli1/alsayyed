@@ -13,6 +13,7 @@ import { NavbarComponent } from './containers/navbar/navbar.component';
 import { SvgImageComponent } from './components/svg-image/svg-image.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListFirstComponent } from './views/list-first/list-first.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ListFirstComponent } from './views/list-first/list-first.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     NgbModule,
     AngularSvgIconModule.forRoot()
   ],

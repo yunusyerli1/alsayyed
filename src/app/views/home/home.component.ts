@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { INavbar } from 'src/app/models/INavbar';
+import { INavbarModel } from 'src/app/models/INavbarModel';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { INavbar } from 'src/app/models/INavbar';
 })
 export class HomeComponent {
 
-  menuItems:INavbar[] = [
+  menuItems:INavbarModel[] = [
     {
       title: "Home",
       route: "/home",
