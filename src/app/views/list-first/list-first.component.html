@@ -18,11 +18,6 @@
         </div>
 
         <div class="col mb-3">
-          <label for="dimensionDefault">Default Dimension:</label>
-          <input type="number" class="form-control" id="dimensionDefault" placeholder="4.5"  formControlName="dimensionDefault">
-        </div>
-
-        <div class="col mb-3">
           <label for="componentType">Component Type:</label>
           <select class="form-select" id="componentType" (change)="changeComponentType($event)" formControlName="componentType">
             <option selected disabled>Choose One...</option>
@@ -48,6 +43,11 @@
             <option value="With Stone">With Stone</option>
             <option value="No Stone">No Stone</option>
           </select>
+        </div>
+
+        <div class="col mb-3">
+          <label for="dimensionDefault">Default Dimension:</label>
+          <input type="number" class="form-control" id="dimensionDefault" placeholder="4.5"  formControlName="dimensionDefault">
         </div>
 
         <div class="col mb-3">

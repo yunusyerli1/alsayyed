@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { IResinFeature } from 'src/app/helpers/models/IResinFeatureModel';
 import { RawMaterial } from 'src/app/helpers/contants/RawMaterial';
 import { ExcelServiceService } from 'src/app/services/excel-service.service';
-import * as XLSX from 'xlsx';
+import { ProductCreationService } from 'src/app/services/product-creation.service';
 
 @Component({
   selector: 'app-list-first',
@@ -83,18 +83,19 @@ export class ListFirstComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+    private productCreationService: ProductCreationService,
     private excelService: ExcelServiceService
     ) {
 
     this.listFirstForm = this.formBuilder.group({
       category: ['', Validators.required],
       designBrand: ['', [Validators.required, Validators.maxLength(6)]],
-      quantity: [null as unknown as number, [Validators.required, Validators.maxLength(3)]],
-      dimensionDefault: [null as unknown as number],
+      quantity: ['', [Validators.required, Validators.maxLength(3)]],
       componentType: ['', Validators.required],
-      fullsetAttribute: [''],
       style: ['', Validators.required],
       rawMaterial: ['', Validators.required],
+      dimensionDefault: ['', Validators.maxLength(3)],
+      fullsetAttribute: [''],
     });
   }
 
@@ -111,7 +112,8 @@ export class ListFirstComponent {
    }
 
    onSubmit() {
-     console.warn(this.listFirstForm.value);
+     const data = this.listFirstForm.value;
+     this.productCreationService.prepareData(data);
    }
 
    exportTableToExcel(): void {

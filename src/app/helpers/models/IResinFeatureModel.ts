@@ -3,12 +3,12 @@ import { FormControl } from "@angular/forms";
 export interface IResinFeature {
     category: FormControl<string | null>;
     designBrand: FormControl<string | null>;
-    quantity: FormControl<number | null>;
-    dimensionDefault: FormControl<number | null>;
+    quantity: FormControl<string | null>;
     componentType: FormControl<string | null>;
-    fullsetAttribute: FormControl<string | null>;
     style: FormControl<string | null>;
     rawMaterial: FormControl<string | null>;
+    dimensionDefault: FormControl<string | null>;
+    fullsetAttribute: FormControl<string | null>;
 }
 
 
