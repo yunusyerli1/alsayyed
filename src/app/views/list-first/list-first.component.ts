@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IResinFeature } from 'src/app/models/IResinFeatureModel';
+import { IResinFeature } from 'src/app/helpers/models/IResinFeatureModel';
+import { RawMaterial } from 'src/app/helpers/contants/RawMaterial';
+import { ExcelServiceService } from 'src/app/services/excel-service.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-list-first',
@@ -10,9 +13,79 @@ import { IResinFeature } from 'src/app/models/IResinFeatureModel';
 export class ListFirstComponent {
 
   listFirstForm: FormGroup<IResinFeature>;
+  rawMaterial = RawMaterial;
+
+  fileName= 'ExcelSheet.xlsx';
+  userList = [
+
+    {
+
+    "id": 1,
+
+    "name": "Leanne Graham",
+
+    "username": "Bret",
+
+    "email": "Sincere@april.biz"
+
+    },
+
+    {
+
+    "id": 2,
+
+    "name": "Ervin Howell",
+
+    "username": "Antonette",
+
+    "email": "Shanna@melissa.tv"
+
+    },
+
+    {
+
+    "id": 3,
+
+    "name": "Clementine Bauch",
+
+    "username": "Samantha",
+
+    "email": "Nathan@yesenia.net"
+
+    },
+
+    {
+
+    "id": 4,
+
+    "name": "Patricia Lebsack",
+
+    "username": "Karianne",
+
+    "email": "Julianne.OConner@kory.org"
+
+    },
+
+    {
+
+    "id": 5,
+
+    "name": "Chelsey Dietrich",
+
+    "username": "Kamren",
+
+    "email": "Lucio_Hettinger@annie.ca"
+
+    }
+
+    ]
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private excelService: ExcelServiceService
+    ) {
+
     this.listFirstForm = this.formBuilder.group({
       category: ['', Validators.required],
       designBrand: ['', [Validators.required, Validators.maxLength(6)]],
@@ -41,7 +114,14 @@ export class ListFirstComponent {
      console.warn(this.listFirstForm.value);
    }
 
+   exportTableToExcel(): void {
+     /* pass here the table id */
+     let tableId = document.getElementById('excel-table');
+     this.excelService.exportTableToExcel(tableId, "tablodan.csv")
+   }
 
-
+    exportToExcel() {
+     this.excelService.exportJSONToExcel(this.userList, "object.xlsx")
+   }
 
 }

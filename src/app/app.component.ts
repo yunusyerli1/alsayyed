@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { INavbarModel } from './models/INavbarModel';
+import { INavbarModel } from './helpers/models/INavbarModel';
 
 @Component({
   selector: 'app-root',
