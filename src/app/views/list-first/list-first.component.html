@@ -67,15 +67,16 @@
   </form>
 </div>
 
-<!-- <div class="mt-5">
+<div class="mt-5" style="max-height: 400px; overflow-y: auto;">
 
   <table class="table table-striped" id="excel-table" *ngIf="(products$ | async) as products">
     <thead>
       <tr>
-        <th scope="col">Id</th>
+        <th scope="col">Category</th>
         <th scope="col">Name</th>
-        <th scope="col">Username</th>
-        <th scope="col">Email</th>
+        <th scope="col">Component Type</th>
+        <th scope="col">Raw Material</th>
+        <th scope="col">Style</th>
       </tr>
     </thead>
     <tbody>
@@ -92,4 +93,4 @@
     </tbody>
   </table>
   <button (click)="exportTableToExcel()">Export to Excel</button>
-</div> -->
+</div>

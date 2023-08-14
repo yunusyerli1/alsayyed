@@ -32,7 +32,6 @@ export class RingService implements ICategoryManagerModel {
     let adana = this.productStore.products;
     console.log("adana", adana)
     this.productStore.setState(arr, this.key);
-    return arr;
   }
 
   setNumbers(number: number) : string{

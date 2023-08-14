@@ -22,70 +22,6 @@ export class ListFirstComponent implements OnInit {
 
   public products$!: Observable<any>;
 
-  userList = [
-
-    {
-
-    "id": 1,
-
-    "name": "Leanne Graham",
-
-    "username": "Bret",
-
-    "email": "Sincere@april.biz"
-
-    },
-
-    {
-
-    "id": 2,
-
-    "name": "Ervin Howell",
-
-    "username": "Antonette",
-
-    "email": "Shanna@melissa.tv"
-
-    },
-
-    {
-
-    "id": 3,
-
-    "name": "Clementine Bauch",
-
-    "username": "Samantha",
-
-    "email": "Nathan@yesenia.net"
-
-    },
-
-    {
-
-    "id": 4,
-
-    "name": "Patricia Lebsack",
-
-    "username": "Karianne",
-
-    "email": "Julianne.OConner@kory.org"
-
-    },
-
-    {
-
-    "id": 5,
-
-    "name": "Chelsey Dietrich",
-
-    "username": "Kamren",
-
-    "email": "Lucio_Hettinger@annie.ca"
-
-    }
-
-    ]
-
 
   constructor(
     private formBuilder: FormBuilder,
@@ -110,7 +46,7 @@ export class ListFirstComponent implements OnInit {
 
   ngOnInit(): void {
     this.setCategories();
-    this.products$ = this.productStore.getProducts();
+    this.products$ = this.productStore.products$;
     this.products$.subscribe(data => console.log("data", data))
     console.log("products", this.products$)
   }
@@ -167,7 +103,7 @@ export class ListFirstComponent implements OnInit {
   }
 
   exportToExcel() {
-    this.excelService.exportJSONToExcel(this.userList, "object.xlsx")
+   this.excelService.exportJSONToExcel(this.productStore.products, "object.xlsx")
   }
 
 }
