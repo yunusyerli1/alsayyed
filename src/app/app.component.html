@@ -6,7 +6,7 @@
   </div>
 
   <div class="container">
-    <a [ngClass]="isSidebarCollapsed ? 'button-sidebar-collapsed': 'button-sidebar-expanded'" (click)= "collapseSidebar()">
+    <a class="btn btn-secondary" [ngClass]="isSidebarCollapsed ? 'button-sidebar-collapsed': 'button-sidebar-expanded'" (click)= "collapseSidebar()">
       <app-svg-image [iconName]="'menu-duo-lg'"></app-svg-image>
     </a>
     <div class="row mt-3">

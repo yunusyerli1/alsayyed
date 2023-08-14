@@ -1,21 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IResinFeature } from 'src/app/helpers/models/IResinFeatureModel';
+import { IFirstFormModel } from 'src/app/helpers/models/IResinFeatureModel';
 import { RawMaterial } from 'src/app/helpers/contants/RawMaterial';
 import { ExcelServiceService } from 'src/app/services/excel-service.service';
-import { ProductCreationService } from 'src/app/services/product-creation.service';
+import { RingService } from 'src/app/services/ring.service';
+import { Categories } from 'src/app/helpers/contants/Categories';
+import { CategoryManager } from 'src/app/services/category.manager';
+import { ProductStore } from 'src/app/stores/product.store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list-first',
   templateUrl: './list-first.component.html',
   styleUrls: ['./list-first.component.scss']
 })
-export class ListFirstComponent {
+export class ListFirstComponent implements OnInit {
 
-  listFirstForm: FormGroup<IResinFeature>;
+  listFirstForm: FormGroup<IFirstFormModel>;
   rawMaterial = RawMaterial;
+  categories:any = [];
 
-  fileName= 'ExcelSheet.xlsx';
+  public products$!: Observable<any>;
+
   userList = [
 
     {
@@ -83,8 +89,9 @@ export class ListFirstComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private productCreationService: ProductCreationService,
-    private excelService: ExcelServiceService
+    private productStore: ProductStore,
+    private excelService: ExcelServiceService,
+    private categoryManager: CategoryManager
     ) {
 
     this.listFirstForm = this.formBuilder.group({
@@ -97,33 +104,70 @@ export class ListFirstComponent {
       dimensionDefault: ['', Validators.maxLength(3)],
       fullsetAttribute: [''],
     });
+
+
   }
 
-   changeComponentType(e: any) {
-     this.listFirstForm.value.componentType = e.target.value;
-   }
+  ngOnInit(): void {
+    this.setCategories();
+    this.products$ = this.productStore.getProducts();
+    this.products$.subscribe(data => console.log("data", data))
+    console.log("products", this.products$)
+  }
 
-   changeRawMaterial(e: any) {
-     this.listFirstForm.value.rawMaterial = e.target.value;
-   }
+  setCategories() {
+    Object.values(Categories).forEach((value) => {
+      this.categories.push(value);
+    })
+  }
 
-   changeStyle(e: any) {
-     this.listFirstForm.value.style = e.target.value;
-   }
 
-   onSubmit() {
-     const data = this.listFirstForm.value;
-     this.productCreationService.prepareData(data);
-   }
+  changeCategory(e: any) {
+    this.listFirstForm.value.category = e.target.value;
+  }
 
-   exportTableToExcel(): void {
-     /* pass here the table id */
-     let tableId = document.getElementById('excel-table');
-     this.excelService.exportTableToExcel(tableId, "tablodan.csv")
-   }
+  changeComponentType(e: any) {
+    this.listFirstForm.value.componentType = e.target.value;
+  }
 
-    exportToExcel() {
-     this.excelService.exportJSONToExcel(this.userList, "object.xlsx")
-   }
+  changeRawMaterial(e: any) {
+    this.listFirstForm.value.rawMaterial = e.target.value;
+  }
+
+  changeStyle(e: any) {
+    this.listFirstForm.value.style = e.target.value;
+  }
+
+  editOperatorKey(operatorKey: string): string {
+    const spaceIndex = operatorKey.indexOf(' ');
+    if(spaceIndex > 0) {
+      operatorKey = operatorKey.replace(/\s+/g, '-');
+    }
+    return operatorKey.toLowerCase();
+  }
+
+  onSubmit() {
+    const data = this.listFirstForm.value;
+    let operatorKey = data.category ?? '';
+    operatorKey = this.editOperatorKey(operatorKey);
+    console.log("operatorKey", operatorKey)
+    const operator = this.categoryManager.get(operatorKey.toLowerCase());
+    if (!operator) {
+      console.warn(`Operator: '${operatorKey}' not found.`);
+    }
+    operator?.run(data);
+    //this.ringService.prepareData(data);
+    this.productStore.products$.subscribe(data => console.log("data",data))
+  }
+
+  exportTableToExcel(): void {
+    /* pass here the table id */
+    let tableId = document.getElementById('excel-table');
+    this.excelService.exportTableToExcel(tableId, "tablodan.csv")
+  }
+
+  exportToExcel() {
+    this.excelService.exportJSONToExcel(this.userList, "object.xlsx")
+  }
 
 }

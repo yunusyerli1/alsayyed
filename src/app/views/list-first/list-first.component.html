@@ -4,56 +4,59 @@
     <div class="row row-cols-4  mb-3">
       <div class="col mb-3">
         <label for="category">Category:</label>
-          <input type="text" class="form-control"  id="category" placeholder="Rings" formControlName="category">
-        </div>
+        <select class="form-select" id="category" (change)="changeCategory($event)" formControlName="category">
+          <option selected disabled>Choose One...</option>
+          <option [value]="category" *ngFor="let category of categories">{{category}}</option>
+        </select>
+      </div>
 
-        <div class="col mb-3">
-          <label for="category">Design Brand:</label>
-          <input type="text" class="form-control" id="designBrand" placeholder="RSDX"  formControlName="designBrand">
-        </div>
+      <div class="col mb-3">
+        <label for="category">Design Brand:</label>
+        <input type="text" class="form-control" id="designBrand" placeholder="RSDX"  formControlName="designBrand">
+      </div>
 
-        <div class="col mb-3">
-          <label for="quantity">Miktar:</label>
-          <input type="number" class="form-control" id="quantity" placeholder="20"  formControlName="quantity">
-        </div>
+      <div class="col mb-3">
+        <label for="quantity">Miktar:</label>
+        <input type="number" class="form-control" id="quantity" placeholder="20"  formControlName="quantity">
+      </div>
 
-        <div class="col mb-3">
-          <label for="componentType">Component Type:</label>
-          <select class="form-select" id="componentType" (change)="changeComponentType($event)" formControlName="componentType">
-            <option selected disabled>Choose One...</option>
-            <option value="Single Component">Single Component</option>
-            <option value="Set">Set</option>
-            <option value="Set-Component">Set Component</option>
-          </select>
-        </div>
+      <div class="col mb-3">
+        <label for="componentType">Component Type:</label>
+        <select class="form-select" id="componentType" (change)="changeComponentType($event)" formControlName="componentType">
+          <option selected disabled>Choose One...</option>
+          <option value="Single Component">Single Component</option>
+          <option value="Set">Set</option>
+          <option value="Set-Component">Set Component</option>
+        </select>
+      </div>
 
-        <div class="col mb-3">
-          <label for="rawMaterial">Raw Material:</label>
-          <select class="form-select" id="rawMaterial" (change)="changeRawMaterial($event)" formControlName="rawMaterial">
-            <option selected disabled>Choose One...</option>
-            <option [value]="rawMaterial.YELLOW_RESIN">{{rawMaterial.YELLOW_RESIN}}</option>
-            <option [value]="rawMaterial.RED_RESIN">{{rawMaterial.RED_RESIN}}</option>
-          </select>
-        </div>
+      <div class="col mb-3">
+        <label for="rawMaterial">Raw Material:</label>
+        <select class="form-select" id="rawMaterial" (change)="changeRawMaterial($event)" formControlName="rawMaterial">
+          <option selected disabled>Choose One...</option>
+          <option [value]="rawMaterial.YELLOW_RESIN">{{rawMaterial.YELLOW_RESIN}}</option>
+          <option [value]="rawMaterial.RED_RESIN">{{rawMaterial.RED_RESIN}}</option>
+        </select>
+      </div>
 
-        <div class="col mb-3">
-          <label for="style">Style:</label>
-          <select class="form-select" id="style" (change)="changeStyle($event)" formControlName="style">
-            <option selected disabled>Choose One...</option>
-            <option value="With Stone">With Stone</option>
-            <option value="No Stone">No Stone</option>
-          </select>
-        </div>
+      <div class="col mb-3">
+        <label for="style">Style:</label>
+        <select class="form-select" id="style" (change)="changeStyle($event)" formControlName="style">
+          <option selected disabled>Choose One...</option>
+          <option value="With Stone">With Stone</option>
+          <option value="No Stone">No Stone</option>
+        </select>
+      </div>
 
-        <div class="col mb-3">
-          <label for="dimensionDefault">Default Dimension:</label>
-          <input type="number" class="form-control" id="dimensionDefault" placeholder="4.5"  formControlName="dimensionDefault">
-        </div>
+      <div class="col mb-3">
+        <label for="dimensionDefault">Default Dimension:</label>
+        <input type="number" class="form-control" id="dimensionDefault" placeholder="4.5"  formControlName="dimensionDefault">
+      </div>
 
-        <div class="col mb-3">
-          <label for="fullsetAttribute">Fullset Attribute:</label>
-          <input type="text" class="form-control" id="fullsetAttribute" placeholder="Bangle"  formControlName="fullsetAttribute">
-        </div>
+      <div class="col mb-3">
+        <label for="fullsetAttribute">Fullset Attribute:</label>
+        <input type="text" class="form-control" id="fullsetAttribute" placeholder="Bangle"  formControlName="fullsetAttribute">
+      </div>
     </div>
 
     <div class="d-flex justify-content-end gap-3 mb-3">
@@ -64,9 +67,9 @@
   </form>
 </div>
 
-<div class="mt-5">
+<!-- <div class="mt-5">
 
-  <table class="table table-striped" id="excel-table">
+  <table class="table table-striped" id="excel-table" *ngIf="(products$ | async) as products">
     <thead>
       <tr>
         <th scope="col">Id</th>
@@ -76,14 +79,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of userList">
-        <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
-        <td>{{item.username}}</td>
-        <td>{{item.email}}</td>
+      <tr *ngFor="let item of products">
+        <td>{{item.category}}</td>
+        <td>{{item.designBrand}}</td>
+        <td>{{item.componentType}}</td>
+        <td>{{item.rawMaterial}}</td>
+        <td>{{item.style}}</td>
+        <td>{{item.dimensionDefault}}</td>
+        <td>{{item.fullsetAttribute}}</td>
       </tr>
 
     </tbody>
   </table>
   <button (click)="exportTableToExcel()">Export to Excel</button>
-</div>
+</div> -->

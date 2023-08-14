@@ -1,14 +1,24 @@
 import { FormControl } from "@angular/forms";
 
+export interface IFirstFormModel {
+  category: FormControl<string | null>;
+  designBrand: FormControl<string | null>;
+  quantity: FormControl<string | null>;
+  componentType: FormControl<string | null>;
+  style: FormControl<string | null>;
+  rawMaterial: FormControl<string | null>;
+  dimensionDefault: FormControl<string | null>;
+  fullsetAttribute: FormControl<string | null>;
+}
+
 export interface IResinFeature {
-    category: FormControl<string | null>;
-    designBrand: FormControl<string | null>;
-    quantity: FormControl<string | null>;
-    componentType: FormControl<string | null>;
-    style: FormControl<string | null>;
-    rawMaterial: FormControl<string | null>;
-    dimensionDefault: FormControl<string | null>;
-    fullsetAttribute: FormControl<string | null>;
+    category: string;
+    designBrand: string;
+    componentType: string;
+    style: string;
+    rawMaterial: string;
+    dimensionDefault?: number;
+    fullsetAttribute?: string;
 }
 
 

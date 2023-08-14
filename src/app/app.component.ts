@@ -63,7 +63,6 @@ export class AppComponent {
   }
 
   collapseSidebar() {
-    console.log("yunus", this.isSidebarCollapsed)
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
 }
