@@ -1,10 +1,14 @@
-<div class="grid-container">
+<div class="main" [ngClass]="isSidebarCollapsed ? 'grid-container-full': 'grid-container'">
 
-  <div class="d-none d-md-block  sidebar">
+  <div class="d-none sidebar " [ngClass]="isSidebarCollapsed ? '': 'd-md-block'">
     <app-sidebar [menuItems]="sideMenu"></app-sidebar>
+
   </div>
 
-  <div class="main container-fluid">
+  <div class="container">
+    <a [ngClass]="isSidebarCollapsed ? 'button-sidebar-collapsed': 'button-sidebar-expanded'" (click)= "collapseSidebar()">
+      <app-svg-image [iconName]="'menu-duo-lg'"></app-svg-image>
+    </a>
     <div class="row mt-3">
       <app-navbar [navItems]="menuItems"></app-navbar>
     </div>
@@ -13,6 +17,8 @@
     </div>
 
     <router-outlet></router-outlet>
+
+
 
   </div>
 </div>

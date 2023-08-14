@@ -12,22 +12,4 @@ body {
   background-color: $body-color;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    "sidebar"
-    "main";
-  grid-template-rows: 1fr;
-  grid-template-columns: $sidebar-width 1fr;
-  height: 100%;
-}
 
-@media (max-width: 768px) {
-  .grid-container {
-    grid-template-areas:
-      "main";
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr;
-    height: 100%;
-  }
-}

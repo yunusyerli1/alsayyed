@@ -9,6 +9,8 @@ import { INavbarModel } from './helpers/models/INavbarModel';
 export class AppComponent {
   title = 'alsayyed';
 
+  isSidebarCollapsed: boolean = false;
+
   sideMenu = [
     {
       title: "1.Liste",
@@ -55,4 +57,13 @@ export class AppComponent {
     },
 
   ]
+
+  constructor() {
+
+  }
+
+  collapseSidebar() {
+    console.log("yunus", this.isSidebarCollapsed)
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
 }
