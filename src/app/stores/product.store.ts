@@ -27,9 +27,6 @@ export class ProductStore {
       this.setState(internalState);
     }
     console.log("internalState", internalState)
-    // internalState = this.getLocalStorage();
-    // this.setState(internalState);
-
   }
 
   protected updateState(data: IResinFeature[]): void {

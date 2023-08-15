@@ -19,6 +19,7 @@ export interface IResinFeature {
     rawMaterial: string;
     dimensionDefault?: number;
     fullsetAttribute?: string;
+    quantity?: string;
 }
 
 

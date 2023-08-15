@@ -7,9 +7,9 @@ import { IResinFeature } from '../helpers/models/IResinFeatureModel';
 @Injectable({
   providedIn: 'root'
 })
-export class RingService extends CategoryLogicActionHandler implements ICategoryManagerModel {
+export class EaringService extends CategoryLogicActionHandler implements ICategoryManagerModel {
 
-  key = 'ring';
+  key = 'earing';
 
   constructor(private productStore: ProductStore) {
     super();
