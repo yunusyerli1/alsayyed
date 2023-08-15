@@ -34,7 +34,7 @@ export class ListFirstComponent implements OnInit {
       category: ['', Validators.required],
       designBrand: ['', [Validators.required, Validators.maxLength(6)]],
       quantity: ['', [Validators.required, Validators.maxLength(3)]],
-      componentType: ['', Validators.required],
+      //componentType: ['', Validators.required],
       style: ['', Validators.required],
       rawMaterial: ['', Validators.required],
       dimensionDefault: ['', Validators.maxLength(3)],
@@ -45,10 +45,9 @@ export class ListFirstComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.productStore.init();
     this.setCategories();
-    this.products$ = this.productStore.products$;
-    this.products$.subscribe(data => console.log("data", data))
-    console.log("products", this.products$)
+    this.products$ = this.productStore.state$;
   }
 
   setCategories() {
@@ -62,9 +61,9 @@ export class ListFirstComponent implements OnInit {
     this.listFirstForm.value.category = e.target.value;
   }
 
-  changeComponentType(e: any) {
-    this.listFirstForm.value.componentType = e.target.value;
-  }
+  // changeComponentType(e: any) {
+  //   this.listFirstForm.value.componentType = e.target.value;
+  // }
 
   changeRawMaterial(e: any) {
     this.listFirstForm.value.rawMaterial = e.target.value;
@@ -92,18 +91,16 @@ export class ListFirstComponent implements OnInit {
       console.warn(`Operator: '${operatorKey}' not found.`);
     }
     operator?.run(data);
-    //this.ringService.prepareData(data);
-    this.productStore.products$.subscribe(data => console.log("data",data))
+  }
+
+  exportToExcel() {
+   this.excelService.exportJSONToExcel(this.productStore.state, "object.xlsx")
   }
 
   exportTableToExcel(): void {
     /* pass here the table id */
     let tableId = document.getElementById('excel-table');
     this.excelService.exportTableToExcel(tableId, "tablodan.csv")
-  }
-
-  exportToExcel() {
-   this.excelService.exportJSONToExcel(this.productStore.products, "object.xlsx")
   }
 
 }

@@ -20,7 +20,7 @@ export class RingService implements ICategoryManagerModel {
       const newObj = {
         category: data.category,
         designBrand: data.designBrand + this.setNumbers(i),
-        componentType: data.componentType,
+        componentType: 'Single Component',
         style: data.style,
         rawMaterial: data.rawMaterial,
         dimensionDefault: data.dimensionDefault,
@@ -28,14 +28,11 @@ export class RingService implements ICategoryManagerModel {
       }
       arr.push(newObj);
     }
-    console.log("arr", arr)
-    let adana = this.productStore.products;
-    console.log("adana", adana)
-    this.productStore.setState(arr, this.key);
+    this.productStore.setState(arr);
   }
 
   setNumbers(number: number) : string{
-    if(number < 10) {
+    if(number < 9) {
       return '0' + (number + 1);
     }
     return (number + 1).toString();
