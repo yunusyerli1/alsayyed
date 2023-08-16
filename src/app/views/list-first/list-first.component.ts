@@ -100,6 +100,11 @@ export class ListFirstComponent implements OnInit {
     this.listFirstForm.reset();
   }
 
+  deleteBrand() {
+    const designBrand = this.listFirstForm.value.designBrand;
+    this.productStore.deleteFromState(designBrand);
+  }
+
   exportToExcel() {
    this.excelService.exportJSONToExcel(this.productStore.state, "object.xlsx")
   }

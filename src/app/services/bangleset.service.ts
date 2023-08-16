@@ -33,7 +33,8 @@ export class BanglesetService extends CategoryLogicActionHandler implements ICat
     for(let i = 0; i < quantity; i++) {
       const newObj = {
         category: data.category,
-        designBrand: data.designBrand + this.setNumbers(i),
+        designBrand: data.designBrand,
+        designCode: data.designBrand + this.setNumbers(i),
         componentType: 'Set',
         style: data.style,
         rawMaterial: data.rawMaterial,
@@ -44,7 +45,7 @@ export class BanglesetService extends CategoryLogicActionHandler implements ICat
     }
 
     this.populateData(data);
-    this.productStore.setState(arr);
+    this.productStore.addToState(arr);
   }
 
   populateData(data: IResinFeature) {

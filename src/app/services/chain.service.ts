@@ -20,8 +20,8 @@ export class ChainService extends CategoryLogicActionHandler implements ICategor
     const postfix = data.postfix || [];
     const productArr: IResinFeature[] = [];
     for (let i = 0; i < quantity; i++) {
-      const designBrand = data.designBrand + this.setNumbers(i);
-      const newProduct: IResinFeature = { ...data, designBrand };
+      const designCode = data.designBrand + this.setNumbers(i);
+      const newProduct: IResinFeature = { ...data, designCode };
       productArr.push(newProduct);
     }
     const arrToStore = postfix.length
@@ -33,7 +33,7 @@ export class ChainService extends CategoryLogicActionHandler implements ICategor
       )
     : productArr;
 
-    this.productStore.setState(arrToStore);
+    this.productStore.addToState(arrToStore);
   }
 
 }

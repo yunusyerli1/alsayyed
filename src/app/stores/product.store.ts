@@ -24,21 +24,29 @@ export class ProductStore {
 
     if(!internalState.length) {
       internalState = this.getLocalStorage();
-      this.setState(internalState);
+      this.addToState(internalState);
     }
     console.log("internalState", internalState)
   }
 
   protected updateState(data: IResinFeature[]): void {
+    this.cache$ = of(data).pipe(shareReplay(1));
     this.store.next(internalState = data);
+    this.setLocalStorage(data);
   }
 
-  public setState(data: IResinFeature[]): void {
-    const currentValue = this.store.getValue();
-    const updatedArray = [...currentValue, ...data];
-    this.cache$ = of(updatedArray).pipe(shareReplay(1));
+  public addToState(data: IResinFeature[]): void {
+    const currentList = this.store.getValue();
+    const updatedArray = [...currentList, ...data];
     this.updateState(updatedArray);
-    this.setLocalStorage(updatedArray);
+  }
+
+  public deleteFromState(category: any) {
+    const currentList = this.store.getValue();
+    const filteredArray = currentList.filter((object) => object.designBrand !== category);
+    console.log(filteredArray)
+    this.updateState(filteredArray);
+
   }
 
   setLocalStorage(data: IResinFeature[]) {

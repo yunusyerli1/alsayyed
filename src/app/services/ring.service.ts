@@ -20,9 +20,9 @@ export class RingService extends CategoryLogicActionHandler implements ICategory
     const postfix = data.postfix || [];
     const productArr: IResinFeature[] = [];
     for (let i = 0; i < quantity; i++) {
-      const designBrand = data.designBrand + this.setNumbers(i) + (isSetComponent ? '-R' : '');
+      const designCode = data.designBrand + this.setNumbers(i) + (isSetComponent ? '-R' : '');
       const componentType = isSetComponent ? 'Set Component' : 'Single Component';
-      const newProduct: IResinFeature = { ...data, designBrand, componentType };
+      const newProduct: IResinFeature = { ...data, designCode, componentType };
       productArr.push(newProduct);
     }
     const arrToStore = postfix.length
@@ -34,7 +34,7 @@ export class RingService extends CategoryLogicActionHandler implements ICategory
       )
     : productArr;
 
-    this.productStore.setState(arrToStore);
+    this.productStore.addToState(arrToStore);
   }
 
 }
