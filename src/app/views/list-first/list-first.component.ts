@@ -39,6 +39,7 @@ export class ListFirstComponent implements OnInit {
       rawMaterial: ['', Validators.required],
       dimensionDefault: ['', Validators.maxLength(3)],
       fullsetAttribute: [''],
+      postfix: ['']
     });
 
 

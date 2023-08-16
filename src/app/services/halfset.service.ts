@@ -50,9 +50,9 @@ export class HalfsetService extends CategoryLogicActionHandler implements ICateg
   }
 
   populateData(data: IResinFeature) {
+    this.pendantService.run(data, true);
     this.earingService.run(data, true);
     this.ringService.run(data, true);
-    this.pendantService.run(data, true);
   }
 
 }

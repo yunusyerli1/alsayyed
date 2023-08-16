@@ -57,7 +57,15 @@
         <label for="fullsetAttribute">Fullset Attribute:</label>
         <input type="text" class="form-control" id="fullsetAttribute" placeholder="Bangle"  formControlName="fullsetAttribute">
       </div>
+
+      <div class="col mb-3">
+        <label for="postfix">Postfix:</label>
+        <input type="text" class="form-control" id="postfix" placeholder="MM"  formControlName="postfix">
+      </div>
+
     </div>
+
+
 
     <div class="d-flex justify-content-end gap-3 mb-3">
       <button class="btn btn-secondary px-3" (click)="exportToExcel()">Export</button>

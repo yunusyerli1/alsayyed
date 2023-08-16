@@ -9,6 +9,7 @@ export interface IFirstFormModel {
   rawMaterial: FormControl<string | null>;
   dimensionDefault: FormControl<string | null>;
   fullsetAttribute: FormControl<string | null>;
+  postfix: FormControl<string | null>;
 }
 
 export interface IResinFeature {

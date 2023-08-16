@@ -51,11 +51,11 @@ export class FullsetService extends CategoryLogicActionHandler implements ICateg
   }
 
   populateData(data: IResinFeature) {
-    this.earingService.run(data, true);
-    this.ringService.run(data, true);
+    this.necklaceService.run(data, true);
     this.bangleService.run(data, true);
     this.braceletService.run(data, true);
-    this.necklaceService.run(data, true);
+    this.earingService.run(data, true);
+    this.ringService.run(data, true);
   }
 
 }
