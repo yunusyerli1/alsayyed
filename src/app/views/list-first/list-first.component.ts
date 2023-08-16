@@ -1,15 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutoCompleteModel, IFirstFormModel } from 'src/app/helpers/models/IResinFeatureModel';
 import { RawMaterial } from 'src/app/helpers/contants/RawMaterial';
 import { ExcelServiceService } from 'src/app/services/excel-service.service';
-import { RingService } from 'src/app/services/ring.service';
 import { Categories } from 'src/app/helpers/contants/Categories';
 import { CategoryManager } from 'src/app/services/category.manager';
 import { ProductStore } from 'src/app/stores/product.store';
 import { Observable } from 'rxjs';
-import { TagInputComponent } from 'ngx-chips';
-import { TagModel } from 'ngx-chips/core/tag-model';
+
 import { deepClone } from 'src/app/helpers/object-utils';
 
 @Component({
@@ -21,11 +19,12 @@ export class ListFirstComponent implements OnInit {
 
   listFirstForm: FormGroup<IFirstFormModel>;
   rawMaterial = RawMaterial;
-  categories:any = [];
-
+  categories: string[] = [];
   selectedTags: AutoCompleteModel[] = [];
+  isTagInputHidden: boolean = false;
 
-  public products$!: Observable<any>;
+  products$!: Observable<any>;
+
 
 
   constructor(
@@ -61,6 +60,10 @@ export class ListFirstComponent implements OnInit {
         el = e.target.value
       }
     })
+    this.isTagInputHidden = false;
+    if(formEl.category === Categories.FULLSET || formEl.category === Categories.HALFSET || formEl.category === Categories.BANGLE_SET) {
+      this.isTagInputHidden = true;
+    }
   }
 
   setTags(e: AutoCompleteModel[]) {

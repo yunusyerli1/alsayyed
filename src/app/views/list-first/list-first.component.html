@@ -50,7 +50,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="!isTagInputHidden">
       <div class="col-6">
         <label>Postfix</label>
         <app-chips-tag-input (valuesToBeSent)="setTags($event)"></app-chips-tag-input>
