@@ -83,16 +83,17 @@ export class ListFirstComponent implements OnInit {
   }
 
   onSubmit() {
-    let formEl = deepClone(this.listFirstForm.value);
-    formEl.postfix = this.selectedTags;
-    let operatorKey = formEl.category ?? '';
+    let data = deepClone(this.listFirstForm.value);
+    data.postfix = this.selectedTags;
+    let operatorKey = data.category ?? '';
     operatorKey = this.editOperatorKey(operatorKey);
     console.log("operatorKey", operatorKey)
     const operator = this.categoryManager.get(operatorKey.toLowerCase());
     if (!operator) {
       console.warn(`Operator: '${operatorKey}' not found.`);
     }
-    operator?.run(formEl);
+    console.log("data", data)
+    operator?.run(data);
     this.listFirstForm.reset();
   }
 

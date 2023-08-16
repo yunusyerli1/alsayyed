@@ -15,23 +15,25 @@ export class ChainService extends CategoryLogicActionHandler implements ICategor
     super();
   }
 
-  run(data: IResinFeature, isSetComponent?: boolean) {
-    console.log("data", data)
-    const quantity = Number(data.quantity ? data.quantity : 0);
-    const arr = [];
-
-    for(let i = 0; i < quantity; i++) {
-      const newObj = {
-        category: data.category,
-        designBrand: data.designBrand + this.setNumbers(i),
-        componentType:'Single Component',
-        style: data.style,
-        rawMaterial: data.rawMaterial,
-        dimensionDefault: data.dimensionDefault
-      }
-      arr.push(newObj);
+  run(data: IResinFeature) {
+    const quantity = Number(data.quantity || 0);
+    const postfix = data.postfix || [];
+    const productArr: IResinFeature[] = [];
+    for (let i = 0; i < quantity; i++) {
+      const designBrand = data.designBrand + this.setNumbers(i);
+      const newProduct: IResinFeature = { ...data, designBrand };
+      productArr.push(newProduct);
     }
-    this.productStore.setState(arr);
+    const arrToStore = postfix.length
+    ? productArr.flatMap(el =>
+        postfix.map(postfixEl => ({
+          ...el,
+          designBrand: el.designBrand + '-' + postfixEl.value,
+        }))
+      )
+    : productArr;
+
+    this.productStore.setState(arrToStore);
   }
 
 }

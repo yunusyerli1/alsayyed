@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { deepClone } from "../helpers/object-utils";
 import { IResinFeature } from "../helpers/models/IResinFeatureModel";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
-import { EMPTY, Observable, of } from "rxjs";
-import { combineLatest, combineLatestWith, distinctUntilChanged, map, shareReplay } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { shareReplay } from "rxjs/operators";
 
 
 const initialState: IResinFeature[] = [];
