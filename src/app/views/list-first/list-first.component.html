@@ -1,10 +1,10 @@
 <div class="mt-3">
   <h1>1.Liste</h1>
   <form class="mt-5" [formGroup]="listFirstForm" (ngSubmit)="onSubmit()">
-    <div class="row row-cols-4  mb-3">
+    <div class="row row-cols-4">
       <div class="col mb-3">
         <label for="category">Category:</label>
-        <select class="form-select" id="category" (change)="changeCategory($event)" formControlName="category">
+        <select class="form-select" id="category" (change)="changeSelection($event, 'category')" formControlName="category">
           <option selected disabled>Choose One...</option>
           <option [value]="category" *ngFor="let category of categories">{{category}}</option>
         </select>
@@ -20,19 +20,9 @@
         <input type="number" class="form-control" id="quantity" placeholder="20"  formControlName="quantity">
       </div>
 
-      <!-- <div class="col mb-3">
-        <label for="componentType">Component Type:</label>
-        <select class="form-select" id="componentType" (change)="changeComponentType($event)" formControlName="componentType">
-          <option selected disabled>Choose One...</option>
-          <option value="Single Component">Single Component</option>
-          <option value="Set">Set</option>
-          <option value="Set-Component">Set Component</option>
-        </select>
-      </div> -->
-
       <div class="col mb-3">
         <label for="rawMaterial">Raw Material:</label>
-        <select class="form-select" id="rawMaterial" (change)="changeRawMaterial($event)" formControlName="rawMaterial">
+        <select class="form-select" id="rawMaterial" (change)="changeSelection($event, 'rawMaterial')" formControlName="rawMaterial">
           <option selected disabled>Choose One...</option>
           <option [value]="rawMaterial.YELLOW_RESIN">{{rawMaterial.YELLOW_RESIN}}</option>
           <option [value]="rawMaterial.RED_RESIN">{{rawMaterial.RED_RESIN}}</option>
@@ -41,7 +31,7 @@
 
       <div class="col mb-3">
         <label for="style">Style:</label>
-        <select class="form-select" id="style" (change)="changeStyle($event)" formControlName="style">
+        <select class="form-select" id="style" (change)="changeSelection($event, 'style')" formControlName="style">
           <option selected disabled>Choose One...</option>
           <option value="With Stone">With Stone</option>
           <option value="No Stone">No Stone</option>
@@ -62,6 +52,7 @@
 
     <div class="row">
       <div class="col-6">
+        <label>Postfix</label>
         <app-chips-tag-input (valuesToBeSent)="setTags($event)"></app-chips-tag-input>
       </div>
     </div>

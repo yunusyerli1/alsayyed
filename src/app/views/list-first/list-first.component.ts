@@ -54,6 +54,15 @@ export class ListFirstComponent implements OnInit {
     this.products$ = this.productStore.state$;
   }
 
+  changeSelection(e: any, formItem: string) {
+    let formEl = this.listFirstForm.value;
+    Object.keys(formEl).forEach(el => {
+      if(el == formItem) {
+        el = e.target.value
+      }
+    })
+  }
+
   setTags(e: AutoCompleteModel[]) {
       this.selectedTags = e;
       console.log("this.selectedTags", this.selectedTags)
@@ -63,18 +72,6 @@ export class ListFirstComponent implements OnInit {
     Object.values(Categories).forEach((value) => {
       this.categories.push(value);
     })
-  }
-
-  changeCategory(e: any) {
-    this.listFirstForm.value.category = e.target.value;
-  }
-
-  changeRawMaterial(e: any) {
-    this.listFirstForm.value.rawMaterial = e.target.value;
-  }
-
-  changeStyle(e: any) {
-    this.listFirstForm.value.style = e.target.value;
   }
 
   editOperatorKey(operatorKey: string): string {
