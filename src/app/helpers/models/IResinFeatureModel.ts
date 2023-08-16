@@ -9,7 +9,6 @@ export interface IFirstFormModel {
   rawMaterial: FormControl<string | null>;
   dimensionDefault: FormControl<string | null>;
   fullsetAttribute: FormControl<string | null>;
-  postfix: FormControl<string | null>;
 }
 
 export interface IResinFeature {
@@ -21,6 +20,12 @@ export interface IResinFeature {
     dimensionDefault?: number;
     fullsetAttribute?: string;
     quantity?: string;
+    postfix?: AutoCompleteModel[];
+}
+
+export interface AutoCompleteModel {
+  value: any;
+  display: string;
 }
 
 

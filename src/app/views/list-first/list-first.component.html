@@ -58,11 +58,12 @@
         <input type="text" class="form-control" id="fullsetAttribute" placeholder="Bangle"  formControlName="fullsetAttribute">
       </div>
 
-      <div class="col mb-3">
-        <label for="postfix">Postfix:</label>
-        <input type="text" class="form-control" id="postfix" placeholder="MM"  formControlName="postfix">
-      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-6">
+        <app-chips-tag-input (valuesToBeSent)="setTags($event)"></app-chips-tag-input>
+      </div>
     </div>
 
 
@@ -73,6 +74,7 @@
     </div>
 
   </form>
+
 </div>
 
 <div class="mt-5" style="max-height: 500px; overflow-y: auto;" *ngIf="(products$ | async) as products">

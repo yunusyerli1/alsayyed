@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
@@ -13,7 +14,9 @@ import { NavbarComponent } from './containers/navbar/navbar.component';
 import { SvgImageComponent } from './components/svg-image/svg-image.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListFirstComponent } from './views/list-first/list-first.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TagInputModule } from 'ngx-chips';
+import { ChipsTagInputComponent } from './components/chips-tag-input/chips-tag-input.component';
 
 
 @NgModule({
@@ -26,14 +29,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     SidebarResponsiveComponent,
     NavbarComponent,
     ListFirstComponent,
+    ChipsTagInputComponent,
 
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     NgbModule,
+    TagInputModule,
     AngularSvgIconModule.forRoot()
   ],
   providers: [],

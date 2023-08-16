@@ -1,0 +1,9 @@
+<tag-input [(ngModel)]='selectedValues'
+  [clearOnBlur]="true"
+  [displayBy]="'label'"
+  [identifyBy]="'value'"
+  (onAdd)="onAdd()"
+  (onRemove)="onRemove()"
+  [placeholder]="'Postfix'">
+</tag-input>
+
