@@ -91,6 +91,7 @@ export class ListFirstComponent implements OnInit {
       console.warn(`Operator: '${operatorKey}' not found.`);
     }
     operator?.run(data);
+    this.listFirstForm.reset();
   }
 
   exportToExcel() {

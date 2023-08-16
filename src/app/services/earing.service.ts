@@ -15,15 +15,16 @@ export class EaringService extends CategoryLogicActionHandler implements ICatego
     super();
   }
 
-  run(data: IResinFeature) {
+  run(data: IResinFeature, isSetComponent?: boolean) {
+    console.log("data", data)
     const quantity = Number(data.quantity ? data.quantity : 0);
     const arr = [];
 
     for(let i = 0; i < quantity; i++) {
       const newObj = {
         category: data.category,
-        designBrand: data.designBrand + this.setNumbers(i),
-        componentType: 'Single Component',
+        designBrand: data.designBrand + this.setNumbers(i) + (isSetComponent ? '-E' : ''),
+        componentType: isSetComponent ? 'Set Component' : 'Single Component',
         style: data.style,
         rawMaterial: data.rawMaterial,
         dimensionDefault: data.dimensionDefault

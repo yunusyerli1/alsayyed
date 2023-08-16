@@ -7,23 +7,24 @@ import { IResinFeature } from '../helpers/models/IResinFeatureModel';
 @Injectable({
   providedIn: 'root'
 })
-export class NecklaceService extends CategoryLogicActionHandler implements ICategoryManagerModel {
+export class ChainService extends CategoryLogicActionHandler implements ICategoryManagerModel {
 
-  key = 'necklace';
+  key = 'chain';
 
   constructor(private productStore: ProductStore) {
     super();
   }
 
   run(data: IResinFeature, isSetComponent?: boolean) {
+    console.log("data", data)
     const quantity = Number(data.quantity ? data.quantity : 0);
     const arr = [];
 
     for(let i = 0; i < quantity; i++) {
       const newObj = {
         category: data.category,
-        designBrand: data.designBrand + this.setNumbers(i) + (isSetComponent ? '-N' : ''),
-        componentType: isSetComponent ? 'Set Component' : 'Single Component',
+        designBrand: data.designBrand + this.setNumbers(i),
+        componentType:'Single Component',
         style: data.style,
         rawMaterial: data.rawMaterial,
         dimensionDefault: data.dimensionDefault

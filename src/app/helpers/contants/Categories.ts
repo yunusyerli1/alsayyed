@@ -9,5 +9,5 @@ export enum Categories {
   PENDANT = "Pendant",
   NECKLACE = "Necklace",
   CHAIN = "Chain",
-  CUSTOMIZED_SET = "Customized Set"
+  //CUSTOMIZED_SET = "Customized Set"
 }

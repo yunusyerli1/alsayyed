@@ -47,7 +47,7 @@ export class ProductStore {
 
   getLocalStorage() {
     const storedData = localStorage.getItem("products");
-    return storedData ? JSON.parse(storedData) : null;
+    return storedData ? JSON.parse(storedData) : [];
   }
 
   //Returns products

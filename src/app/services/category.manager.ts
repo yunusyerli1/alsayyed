@@ -6,6 +6,10 @@ import { BangleService } from './bangle.service';
 import { BraceletService } from './bracelet.service';
 import { PendantService } from './pendant.service';
 import { NecklaceService } from './necklace.service';
+import { FullsetService } from './fullset.service';
+import { HalfsetService } from './halfset.service';
+import { BanglesetService } from './bangleset.service';
+import { ChainService } from './chain.service';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +23,10 @@ export class CategoryManager {
         private braceletService: BraceletService,
         private pendantService: PendantService,
         private necklaceService: NecklaceService,
-
+        private fullsetService: FullsetService,
+        private halfsetService: HalfsetService,
+        private banglesetService: BanglesetService,
+        private chainService: ChainService
     ) {
     }
 
@@ -31,6 +38,10 @@ export class CategoryManager {
             'bracelet': this.braceletService,
             'pendant': this.pendantService,
             'necklace': this.necklaceService,
+            'fullset': this.fullsetService,
+            'halfset': this.halfsetService,
+            'bangle-set': this.banglesetService,
+            'chain': this.chainService,
         };
 
         return operatorMap[key];
