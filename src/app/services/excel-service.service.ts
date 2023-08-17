@@ -1,24 +1,21 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import * as XLSX from 'xlsx';
+import { ProductStore } from '../stores/product.store';
 
-type AOA = any[][];
+interface AOA  {
+  [key: string]: any;
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExcelServiceService {
 
-  //file!: File;
-  // arrayBuffer: any;
-  // fileList: any
-
-  data: AOA = [[], []];
-
   private weightStore = new BehaviorSubject<any>([]);
   public weightState$ = this.weightStore.asObservable();
 
-  constructor() { }
+  constructor( private productStore: ProductStore) { }
 
   private updateState(data: any): void {
     this.weightStore.next(data);
@@ -49,7 +46,7 @@ export class ExcelServiceService {
     if (target.files.length !== 1) throw new Error('Cannot use multiple files');
     const file: File = event.target.files[0];
     let fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(file);
+    fileReader.readAsBinaryString(file);
     fileReader.onload = (e:any) => {
         /* read workbook */
       const bstr: string = e.target.result;
@@ -60,21 +57,30 @@ export class ExcelServiceService {
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
 
       /* save data */
-      this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
+      const importedData: AOA[] = XLSX.utils.sheet_to_json(ws);
 
-      this.sendWeightData(this.data);
+      this.sendWeightData(importedData);
     }
   }
 
-  sendWeightData(data: any) {
+  sendWeightData(data: AOA[]) {
     console.log(data);
-     //const newData = data.filter((arr: string[]) => arr[0] !== null);
-     this.data = data.filter((subArray: any[]) => {
-      // Filter out sub-arrays that are empty or contain only null values
-      return  subArray.length > 0 && !subArray.every(item => item === null || item === 0);
+    const filteredArray = data.filter((item: AOA) => {
+      return Object.keys(item).length > 0 && item.hasOwnProperty("KOD");
   });
-    this.updateState(this.data)
-     console.log(this.data);
+    const modifiedArray = filteredArray.map(item => {
+      const modifiedItem:any = {};
+      for (const key in item) {
+          if (item.hasOwnProperty(key)) {
+              const newKey:any = key.replace(/\s+/g, "");
+              modifiedItem[newKey] = item[key];
+          }
+      }
+      return modifiedItem;
+  });
+
+     console.log(modifiedArray);
+
   }
 
 
