@@ -1,0 +1,32 @@
+<div style="max-height: 520px; overflow-y: auto;" *ngIf="(products$ | async) as products">
+
+  <table class="table table-striped" id="excel-table" *ngIf="products.length">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Category</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Code</th>
+        <th scope="col">Component Type</th>
+        <th scope="col">Raw Material</th>
+        <th scope="col">Style</th>
+        <th scope="col">Dimension</th>
+        <th scope="col">Fullset Attribute</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of products; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.designBrand}}</td>
+        <td>{{item.designCode}}</td>
+        <td>{{item.componentType}}</td>
+        <td>{{item.rawMaterial}}</td>
+        <td>{{item.style}}</td>
+        <td>{{item.dimensionDefault}}</td>
+        <td>{{item.fullsetAttribute}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>

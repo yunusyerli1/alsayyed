@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { ListFirstComponent } from './views/list-first/list-first.component';
+import { AddWeightComponent } from './views/add-weight/add-weight.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "list-first", component: ListFirstComponent },
-  // { path: "service", component: ServiceComponent },
+  { path: "weight", component: AddWeightComponent },
   // { path: "skills", component: SkillComponent },
   // { path: "contact", component: ContactComponent },
   { path: "404", component: NotFoundComponent },

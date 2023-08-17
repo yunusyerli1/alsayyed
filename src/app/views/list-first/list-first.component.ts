@@ -6,8 +6,6 @@ import { ExcelServiceService } from 'src/app/services/excel-service.service';
 import { Categories } from 'src/app/helpers/contants/Categories';
 import { CategoryManager } from 'src/app/services/category.manager';
 import { ProductStore } from 'src/app/stores/product.store';
-import { Observable } from 'rxjs';
-
 import { deepClone } from 'src/app/helpers/object-utils';
 
 @Component({
@@ -22,8 +20,6 @@ export class ListFirstComponent implements OnInit {
   categories: string[] = [];
   selectedTags: AutoCompleteModel[] = [];
   isTagInputHidden: boolean = false;
-
-  products$!: Observable<any>;
 
 
 
@@ -48,9 +44,7 @@ export class ListFirstComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productStore.init();
     this.setCategories();
-    this.products$ = this.productStore.state$;
   }
 
   changeSelection(e: any, formItem: string) {

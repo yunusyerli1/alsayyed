@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { INavbarModel } from './helpers/models/INavbarModel';
+import { ProductStore } from './stores/product.store';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +14,14 @@ export class AppComponent {
 
   sideMenu = [
     {
-      title: "1.Liste",
+      title: "Add Products",
       icon: "home",
       route: "list-first"
     },
     {
-      title: "2.Liste",
+      title: "Add Weights",
       icon: "bag",
-      route: "portfolio"
+      route: "weight"
     },
     {
       title: "3.Liste",
@@ -58,8 +59,8 @@ export class AppComponent {
 
   ]
 
-  constructor() {
-
+  constructor( private productStore: ProductStore,) {
+    this.productStore.init();
   }
 
   collapseSidebar() {

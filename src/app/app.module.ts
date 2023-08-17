@@ -17,6 +17,8 @@ import { ListFirstComponent } from './views/list-first/list-first.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TagInputModule } from 'ngx-chips';
 import { ChipsTagInputComponent } from './components/chips-tag-input/chips-tag-input.component';
+import { TableComponent } from './components/table/table.component';
+import { AddWeightComponent } from './views/add-weight/add-weight.component';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import { ChipsTagInputComponent } from './components/chips-tag-input/chips-tag-i
     NavbarComponent,
     ListFirstComponent,
     ChipsTagInputComponent,
+    TableComponent,
+    AddWeightComponent,
 
   ],
   imports: [
