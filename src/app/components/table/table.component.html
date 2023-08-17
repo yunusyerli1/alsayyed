@@ -1,4 +1,4 @@
-<div style="max-height: 520px; overflow-y: auto;" *ngIf="(products$ | async) as products">
+<ng-container *ngIf="(products$ | async) as products">
 
   <table class="table table-striped" id="excel-table" *ngIf="products.length">
     <thead>
@@ -29,4 +29,4 @@
 
     </tbody>
   </table>
-</div>
+</ng-container>

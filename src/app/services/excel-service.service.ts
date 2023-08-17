@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import * as XLSX from 'xlsx';
 
 type AOA = any[][];
@@ -12,9 +13,16 @@ export class ExcelServiceService {
   // arrayBuffer: any;
   // fileList: any
 
-  data: AOA = [[1, 2], [3, 4]];
+  data: AOA = [[], []];
+
+  private weightStore = new BehaviorSubject<any>([]);
+  public weightState$ = this.weightStore.asObservable();
 
   constructor() { }
+
+  private updateState(data: any): void {
+    this.weightStore.next(data);
+  }
 
   exportJSONToExcel(json_list: any[], fileName: string) {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json_list);
@@ -53,9 +61,20 @@ export class ExcelServiceService {
 
       /* save data */
       this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
-      console.log(this.data);
 
+      this.sendWeightData(this.data);
     }
+  }
+
+  sendWeightData(data: any) {
+    console.log(data);
+     //const newData = data.filter((arr: string[]) => arr[0] !== null);
+     this.data = data.filter((subArray: any[]) => {
+      // Filter out sub-arrays that are empty or contain only null values
+      return  subArray.length > 0 && !subArray.every(item => item === null || item === 0);
+  });
+    this.updateState(this.data)
+     console.log(this.data);
   }
 
 

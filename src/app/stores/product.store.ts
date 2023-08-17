@@ -29,7 +29,7 @@ export class ProductStore {
     console.log("internalState", internalState)
   }
 
-  protected updateState(data: IResinFeature[]): void {
+  private updateState(data: IResinFeature[]): void {
     this.cache$ = of(data).pipe(shareReplay(1));
     this.store.next(internalState = data);
     this.setLocalStorage(data);

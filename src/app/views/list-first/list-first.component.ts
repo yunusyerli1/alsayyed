@@ -21,8 +21,6 @@ export class ListFirstComponent implements OnInit {
   selectedTags: AutoCompleteModel[] = [];
   isTagInputHidden: boolean = false;
 
-
-
   constructor(
     private formBuilder: FormBuilder,
     private productStore: ProductStore,
