@@ -1,6 +1,8 @@
 <div class="mt-2">
   <h1>Add Weight</h1>
+
   <app-table></app-table>
+
   <div class="d-flex justify-content-between my-3">
     <button class="btn btn-sm btn-danger px-3" type="button">Delete</button>
     <div class="d-flex justify-content-end gap-3">
@@ -10,5 +12,12 @@
       <button class="btn btn-sm btn-success px-3" type="submit">Add</button>
     </div>
   </div>
+
+  <div class="col-md-8 form-group">
+    <input type="file" class="form-control" (change)="uploadFile($event)" placeholder="Upload file" accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"  multiple="false">
+  </div>
+
+
+
 </div>
 

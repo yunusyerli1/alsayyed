@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ExcelServiceService } from 'src/app/services/excel-service.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-add-weight',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-weight.component.scss']
 })
 export class AddWeightComponent {
+
+  constructor(private excelService: ExcelServiceService) {}
+
+  uploadFile(event: any) {
+    this.excelService.uploadFile(event)
+}
 
 }
