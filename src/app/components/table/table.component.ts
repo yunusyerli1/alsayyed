@@ -17,6 +17,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.products$ = this.productStore.state$;
+    this.products$.subscribe(data => console.log(data))
   }
 
 

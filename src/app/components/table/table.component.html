@@ -7,11 +7,16 @@
         <th scope="col">Category</th>
         <th scope="col">Brand</th>
         <th scope="col">Code</th>
-        <th scope="col">Component Type</th>
-        <th scope="col">Raw Material</th>
+        <th scope="col">Comp Type</th>
+        <th scope="col">Raw Mat</th>
         <th scope="col">Style</th>
+        <th scope="col">Resin Weight</th>
+        <th scope="col">22 Weight</th>
+        <th scope="col">21 Weight</th>
+        <th scope="col">18 Weight</th>
+        <th scope="col">14 Weight</th>
         <th scope="col">Dimension</th>
-        <th scope="col">Fullset Attribute</th>
+        <th scope="col">Fullset Attr</th>
       </tr>
     </thead>
     <tbody>
@@ -20,9 +25,14 @@
         <td>{{item.category}}</td>
         <td>{{item.designBrand}}</td>
         <td>{{item.designCode}}</td>
-        <td>{{item.componentType}}</td>
+        <td>{{item.componentType | slice:0:10}}</td>
         <td>{{item.rawMaterial}}</td>
-        <td>{{item.style}}</td>
+        <td>{{item.style | slice:0:8}}</td>
+        <td>{{item.weightResin}}</td>
+        <td>{{item.weight22Kt}}</td>
+        <td>{{item.weight21Kt}}</td>
+        <td>{{item.weight18Kt}}</td>
+        <td>{{item.weight14Kt}}</td>
         <td>{{item.dimensionDefault}}</td>
         <td>{{item.fullsetAttribute}}</td>
       </tr>

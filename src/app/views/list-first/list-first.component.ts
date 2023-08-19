@@ -43,6 +43,7 @@ export class ListFirstComponent implements OnInit {
 
   ngOnInit(): void {
     this.setCategories();
+    //this.productStore.vm$.subscribe(data => console.log(data));
   }
 
   changeSelection(e: any, formItem: string) {

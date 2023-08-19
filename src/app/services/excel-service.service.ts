@@ -1,25 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import * as XLSX from 'xlsx';
 import { ProductStore } from '../stores/product.store';
-
-interface AOA  {
-  [key: string]: any;
-};
+import { ObjectMap } from '../helpers/models/IResinFeatureModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExcelServiceService {
 
-  private weightStore = new BehaviorSubject<any>([]);
-  public weightState$ = this.weightStore.asObservable();
-
   constructor( private productStore: ProductStore) { }
-
-  private updateState(data: any): void {
-    this.weightStore.next(data);
-  }
 
   exportJSONToExcel(json_list: any[], fileName: string) {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json_list);
@@ -57,30 +46,10 @@ export class ExcelServiceService {
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
 
       /* save data */
-      const importedData: AOA[] = XLSX.utils.sheet_to_json(ws);
+      const importedData: ObjectMap[] = XLSX.utils.sheet_to_json(ws);
 
-      this.sendWeightData(importedData);
+      this.productStore.sendWeightData(importedData);
     }
-  }
-
-  sendWeightData(data: AOA[]) {
-    console.log(data);
-    const filteredArray = data.filter((item: AOA) => {
-      return Object.keys(item).length > 0 && item.hasOwnProperty("KOD");
-  });
-    const modifiedArray = filteredArray.map(item => {
-      const modifiedItem:any = {};
-      for (const key in item) {
-          if (item.hasOwnProperty(key)) {
-              const newKey:any = key.replace(/\s+/g, "");
-              modifiedItem[newKey] = item[key];
-          }
-      }
-      return modifiedItem;
-  });
-
-     console.log(modifiedArray);
-
   }
 
 

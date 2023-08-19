@@ -11,6 +11,7 @@ export interface IFirstFormModel {
 }
 
 export interface IResinFeature {
+    [x: string]: any;
     category: string;
     designBrand: string;
     designCode: string;
@@ -21,12 +22,21 @@ export interface IResinFeature {
     fullsetAttribute?: string;
     quantity?: string;
     postfix?: AutoCompleteModel[];
+    weightResin?: number;
+    weight22Kt?: number;
+    weight21Kt?: number;
+    weight18Kt?: number;
+    weight14Kt?: number;
 }
 
 export interface AutoCompleteModel {
   value: any;
   display: string;
 }
+
+export interface ObjectMap  {
+  [key: string]: any;
+};
 
 
 export interface IResinFeature2{
