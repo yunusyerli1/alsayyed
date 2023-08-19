@@ -3,8 +3,7 @@ import { deepClone } from "../helpers/object-utils";
 import { ObjectMap, IResinFeature } from "../helpers/models/IResinFeatureModel";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 import { Observable, of } from "rxjs";
-import { combineLatestWith, distinctUntilChanged, map, shareReplay, tap } from "rxjs/operators";
-
+import { combineLatestWith, map, shareReplay, take, tap } from "rxjs/operators";
 
 const initialState: IResinFeature[] = [];
 
@@ -23,9 +22,6 @@ export class ProductStore {
 
   protected cache$: Observable<IResinFeature[]> | null = null;
 
-  public vm$!: Observable<any>;
-  public vm: any;
-
   init(): void {
 
     if(!internalState.length) {
@@ -36,7 +32,6 @@ export class ProductStore {
   }
 
   private updateState(data: IResinFeature[]): void {
-    console.log(data)
     this.cache$ = of(data).pipe(shareReplay(1));
     this.store.next(internalState = data);
     this.setLocalStorage(data);
@@ -55,7 +50,6 @@ export class ProductStore {
   public deleteFromState(category: any) {
     const currentList = this.store.getValue();
     const filteredArray = currentList.filter((object) => object.designBrand !== category);
-    console.log(filteredArray)
     this.updateState(filteredArray);
 
   }
@@ -90,6 +84,7 @@ export class ProductStore {
 
   public setWeight() {
     this.state$.pipe(
+      take(1),
       combineLatestWith(this.weightState$),
       map(([state, weight]) => {
         if (weight.length === 0) {
@@ -106,6 +101,9 @@ export class ProductStore {
               weight21Kt: (keyNumber).toFixed(4),
               weight18Kt: (keyNumber * 0.882).toFixed(4),
               weight14Kt: (keyNumber * 0.765).toFixed(4),
+              pricePrintable:2.0,
+              priceResin: 6.0,
+              priceGold: 3.0
             };
           }
           return stateObj;
@@ -113,16 +111,12 @@ export class ProductStore {
         return mergedData;
     }),
       tap(data => this.updateState(data))
-    ).subscribe()
+    ).subscribe();
   }
 
   public sendWeightData(data: any) {
     const trimmedData = this.trimData(data);
     this.updateWightState(trimmedData)
-    // this.state.forEach(product => {
-
-    // });
-    console.log(data);
   }
 
   private trimData(data: ObjectMap[]): ObjectMap[] {

@@ -27,6 +27,9 @@ export interface IResinFeature {
     weight21Kt?: number;
     weight18Kt?: number;
     weight14Kt?: number;
+    pricePrintable?: number;
+    priceResin?: number;
+    priceGold?: number;
 }
 
 export interface AutoCompleteModel {

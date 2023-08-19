@@ -1,0 +1,20 @@
+export enum ProductDesignCategories {
+
+  BANGLE_SET = "__export__.product_category_25_98d0b9d5",
+  CUSTOMIZED_SET = "__export__.product_category_21_5f90c5f5",
+  HALFSET = "__export__.product_category_8_0f9141ef",
+  FULLSET = "__export__.product_category_7_baff9dd4",
+  RING_AS_SET = "__export__.product_category_9_fece432e",
+  EARING_AS_SET = "__export__.product_category_6_5117c46b",
+  BRACELET_AS_SET = "__export__.product_category_30_72562e37",
+  BANGLE_AS_SET = "__export__.product_category_5_e94cee2e",
+  PENDANT_AS_SET = "__export__.product_category_29_7ea21df9",
+  NECKLACE_AS_SET = "__export__.product_category_20_79989609",
+  RING_AS_SINGLE = "__export__.product_category_28_c72684b1",
+  EARING_AS_SINGLE = "__export__.product_category_27_7b470fc3",
+  BANGLE_AS_SINGLE = "__export__.product_category_31_fba546de",
+  PENDANT_AS_SINGLE = "__export__.product_category_32_232ce40d",
+  CHAIN_AS_SINGLE = "__export__.product_category_42_d1953cb8",
+  BRACELET_AS_SINGLE = "Yok",
+  NECKLACE_AS_SINGLE = "Yok",
+}
