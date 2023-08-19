@@ -9,7 +9,7 @@
   </div>
   <div class="col-4">
     <div class="form-group">
-      <input type="file" class="form-control" (change)="uploadFile($event)" placeholder="Upload file" accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"  multiple="false">
+      <input type="file" class="form-control form-control-sm" (change)="uploadFile($event)" placeholder="Upload file" accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"  multiple="false">
     </div>
     <div class="mt-3" *ngIf="(productWeights$ | async) as productWeights">
       <button class="btn btn-primary btn-sm" (click)= "setWeight()">Set Weight</button>

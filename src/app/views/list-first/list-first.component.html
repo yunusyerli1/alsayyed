@@ -4,7 +4,7 @@
     <div class="row row-cols-4">
       <div class="col mb-3">
         <label for="category">Category:</label>
-        <select class="form-select" id="category" (change)="changeSelection($event, 'category')" formControlName="category">
+        <select class="form-select form-select-sm" id="category" (change)="changeSelection($event, 'category')" formControlName="category">
           <option selected disabled>Choose One...</option>
           <option [value]="category" *ngFor="let category of categories">{{category}}</option>
         </select>
@@ -12,17 +12,17 @@
 
       <div class="col mb-3">
         <label for="category">Design Brand:</label>
-        <input type="text" class="form-control" id="designBrand" placeholder="RSDX"  formControlName="designBrand">
+        <input type="text" class="form-control form-control-sm" id="designBrand" placeholder="RSDX"  formControlName="designBrand">
       </div>
 
       <div class="col mb-3">
         <label for="quantity">Miktar:</label>
-        <input type="number" class="form-control" id="quantity" placeholder="20"  formControlName="quantity">
+        <input type="number" class="form-control form-control-sm" id="quantity" placeholder="20"  formControlName="quantity">
       </div>
 
       <div class="col mb-3">
         <label for="rawMaterial">Raw Material:</label>
-        <select class="form-select" id="rawMaterial" (change)="changeSelection($event, 'rawMaterial')" formControlName="rawMaterial">
+        <select class="form-select form-select-sm" id="rawMaterial" (change)="changeSelection($event, 'rawMaterial')" formControlName="rawMaterial">
           <option selected disabled>Choose One...</option>
           <option [value]="rawMaterial.YELLOW_RESIN">{{rawMaterial.YELLOW_RESIN}}</option>
           <option [value]="rawMaterial.RED_RESIN">{{rawMaterial.RED_RESIN}}</option>
@@ -31,7 +31,7 @@
 
       <div class="col mb-3">
         <label for="style">Style:</label>
-        <select class="form-select" id="style" (change)="changeSelection($event, 'style')" formControlName="style">
+        <select class="form-select form-select-sm" id="style" (change)="changeSelection($event, 'style')" formControlName="style">
           <option selected disabled>Choose One...</option>
           <option value="With Stone">With Stone</option>
           <option value="No Stone">No Stone</option>
@@ -40,12 +40,12 @@
 
       <div class="col mb-3">
         <label for="dimensionDefault">Default Dimension:</label>
-        <input type="number" class="form-control" id="dimensionDefault" placeholder="4.5"  formControlName="dimensionDefault">
+        <input type="number" class="form-control form-control-sm" id="dimensionDefault" placeholder="4.5"  formControlName="dimensionDefault">
       </div>
 
       <div class="col mb-3">
         <label for="fullsetAttribute">Fullset Attribute:</label>
-        <input type="text" class="form-control" id="fullsetAttribute" placeholder="Bangle"  formControlName="fullsetAttribute">
+        <input type="text" class="form-control form-control-sm" id="fullsetAttribute" placeholder="Bangle"  formControlName="fullsetAttribute">
       </div>
 
     </div>
