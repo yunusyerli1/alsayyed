@@ -3,6 +3,7 @@ import { ICategoryManagerModel } from '../helpers/models/ICategoryManager';
 import { ProductStore } from '../stores/product.store';
 import { CategoryLogicActionHandler } from './categoryLogic.action';
 import { IResinFeature } from '../helpers/models/IResinFeatureModel';
+import { ProductDesignCategories } from '../helpers/contants/ProductDesignCategories';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,8 @@ export class BraceletService extends CategoryLogicActionHandler implements ICate
     const productArr: IResinFeature[] = [];
     for (let i = 0; i < quantity; i++) {
       const designCode = data.designBrand + this.setNumbers(i) + (isSetComponent ? '-BL' : '');
-      const componentType = isSetComponent ? 'Set Component' : 'Single Component';
-      const newProduct: IResinFeature = { ...data, designCode, componentType };
+      const designCategory = isSetComponent ? ProductDesignCategories.BRACELET_AS_SET : ProductDesignCategories.BRACELET_AS_SINGLE;
+      const newProduct: IResinFeature = { ...data, designCode, designCategory };
       productArr.push(newProduct);
     }
     const arrToStore = postfix.length

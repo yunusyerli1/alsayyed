@@ -8,6 +8,7 @@ import { BangleService } from './bangle.service';
 import { RingService } from './ring.service';
 import { NecklaceService } from './necklace.service';
 import { BraceletService } from './bracelet.service';
+import { ProductDesignCategories } from '../helpers/contants/ProductDesignCategories';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,7 @@ export class FullsetService extends CategoryLogicActionHandler implements ICateg
         category: data.category,
         designBrand: data.designBrand,
         designCode: data.designBrand + this.setNumbers(i),
-        componentType: 'Set',
+        designCategory: ProductDesignCategories.FULLSET,
         style: data.style,
         rawMaterial: data.rawMaterial,
         dimensionDefault: data.dimensionDefault,

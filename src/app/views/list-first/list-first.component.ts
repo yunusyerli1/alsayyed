@@ -87,7 +87,7 @@ export class ListFirstComponent implements OnInit {
     if (!operator) {
       console.warn(`Operator: '${operatorKey}' not found.`);
     }
-    console.log("data", data)
+    console.log("FORMDAN CIKAN data", data)
     operator?.run(data);
     this.listFirstForm.reset();
   }

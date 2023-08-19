@@ -15,9 +15,11 @@ export interface IResinFeature {
     category: string;
     designBrand: string;
     designCode: string;
-    componentType: string;
+    designCategory: string;
     style: string;
     rawMaterial: string;
+    attribute?: string;
+    attributeValue?: string;
     dimensionDefault?: number;
     fullsetAttribute?: string;
     quantity?: string;

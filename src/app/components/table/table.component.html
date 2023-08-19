@@ -4,10 +4,12 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Design Category</th>
         <th scope="col">Category</th>
-        <th scope="col">Brand</th>
-        <th scope="col">Code</th>
-        <th scope="col">Comp Type</th>
+        <th scope="col">Design Brand</th>
+        <th scope="col">Design Code</th>
+        <th scope="col">Product Attributes</th>
+        <th scope="col">Product Attributes Values</th>
         <th scope="col">Raw Mat</th>
         <th scope="col">Style</th>
         <th scope="col">Resin Weight</th>
@@ -25,10 +27,12 @@
     <tbody>
       <tr *ngFor="let item of products; let i = index">
         <td>{{i + 1}}</td>
+        <td>{{item.designCategory | slice:-12}}</td>
         <td>{{item.category}}</td>
         <td>{{item.designBrand}}</td>
         <td>{{item.designCode}}</td>
-        <td>{{item.componentType | slice:0:10}}</td>
+        <td>{{item.attribute}}</td>
+        <td>{{item.attributeValue}}</td>
         <td>{{item.rawMaterial}}</td>
         <td>{{item.style | slice:0:8}}</td>
         <td>{{item.weightResin}}</td>

@@ -3,6 +3,7 @@ import { ICategoryManagerModel } from '../helpers/models/ICategoryManager';
 import { ProductStore } from '../stores/product.store';
 import { CategoryLogicActionHandler } from './categoryLogic.action';
 import { AutoCompleteModel, IResinFeature } from '../helpers/models/IResinFeatureModel';
+import { ProductDesignCategories } from '../helpers/contants/ProductDesignCategories';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ export class EaringService extends CategoryLogicActionHandler implements ICatego
     const productArr: IResinFeature[] = [];
     for (let i = 0; i < quantity; i++) {
       const designCode = data.designBrand + this.setNumbers(i) + (isSetComponent ? '-E' : '');
-      const componentType = isSetComponent ? 'Set Component' : 'Single Component';
-      const newProduct: IResinFeature = { ...data, designCode, componentType };
+      const designCategory = isSetComponent ? ProductDesignCategories.EARING_AS_SET : ProductDesignCategories.EARING_AS_SINGLE;
+      const newProduct: IResinFeature = { ...data, designCode, designCategory };
       productArr.push(newProduct);
     }
     const arrToStore = postfix.length

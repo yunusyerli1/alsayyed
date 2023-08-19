@@ -3,6 +3,7 @@ import { ICategoryManagerModel } from '../helpers/models/ICategoryManager';
 import { ProductStore } from '../stores/product.store';
 import { CategoryLogicActionHandler } from './categoryLogic.action';
 import { IResinFeature } from '../helpers/models/IResinFeatureModel';
+import { ProductDesignCategories } from '../helpers/contants/ProductDesignCategories';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,10 @@ export class RingService extends CategoryLogicActionHandler implements ICategory
     const productArr: IResinFeature[] = [];
     for (let i = 0; i < quantity; i++) {
       const designCode = data.designBrand + this.setNumbers(i) + (isSetComponent ? '-R' : '');
-      const componentType = isSetComponent ? 'Set Component' : 'Single Component';
-      const newProduct: IResinFeature = { ...data, designCode, componentType };
+      const designCategory = isSetComponent ? ProductDesignCategories.RING_AS_SET : ProductDesignCategories.RING_AS_SINGLE;
+      const attribute = 'Ring Size';
+      const attributeValue = '54,56,58,60,62';
+      const newProduct: IResinFeature = { ...data, designCode, designCategory, attribute, attributeValue };
       productArr.push(newProduct);
     }
     const arrToStore = postfix.length
