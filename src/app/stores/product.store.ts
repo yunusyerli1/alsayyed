@@ -102,8 +102,9 @@ export class ProductStore {
                 KOD: item.KOD.slice(0, dashIndex)
               }
             }
-            return item.KOD;
+            return item;
           });
+          console.log(newArrForWeight)
           const matchingWeightItem = newArrForWeight.filter((weightObj: any) => weightObj.KOD === stateObj.designCode);
           if (matchingWeightItem.length > 0) {
             let keyNumber: number = matchingWeightItem[0]['21ayar'] / 100;
@@ -129,6 +130,7 @@ export class ProductStore {
 
   public sendWeightData(data: any) {
     const trimmedData = this.trimData(data);
+    console.log(trimmedData)
     this.updateWightState(trimmedData)
   }
 
