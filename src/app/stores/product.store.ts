@@ -82,20 +82,20 @@ export class ProductStore  implements OnDestroy{
     console.log(products)
     const newArr = products.map((product: IResinFeature) => {
       return {
-        designCategory: product.designCategory,
-        designBrand: product.designBrand,
-        designCode: product.designCode,
-        attribute: product.attribute,
-        attributeValue: product.attributeValue,
-        rawMaterial: product.rawMaterial,
-        weightResin: product.weightResin,
-        weight22Kt: product.weight22Kt,
-        weight21Kt: product.weight21Kt,
-        weight18Kt: product.weight18Kt,
-        weight14Kt: product.weight14Kt,
-        pricePrintable: product.pricePrintable,
-        priceResin: product.priceResin,
-        priceGold: product.priceGold
+        'Design Category': product.designCategory,
+        'Design Brand': product.designBrand,
+        'Design Code': product.designCode,
+        'Product Attributes/Attribute': product.attribute,
+        'Product Attributes/Attribute/Value': product.attributeValue,
+        'Raw material': product.rawMaterial,
+        'Resin Wt. (Gr)': product.weightResin,
+        '22 Kt Gold Wt. (Gr)': product.weight22Kt,
+        '21 Kt Gold Wt. (Gr)': product.weight21Kt,
+        '18 Kt Gold Wt. (Gr)': product.weight18Kt,
+        '14kt Gold Wt. (Gr)': product.weight14Kt,
+        'Printable file Unit price': product.pricePrintable,
+        'Resin Gram price': product.priceResin,
+        'Gold Gram price': product.priceGold
       }
     })
     return newArr
