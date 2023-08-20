@@ -20,6 +20,7 @@ export interface IResinFeature {
     rawMaterial: string;
     fullsetAttribute?: string;
     quantity?: string;
+    componentType: number;
     postfix?: AutoCompleteModel[];
     weightResin?: number;
     weight22Kt?: number;

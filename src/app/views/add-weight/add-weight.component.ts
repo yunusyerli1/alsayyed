@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ExcelServiceService } from 'src/app/services/excel-service.service';
 import { ProductStore } from 'src/app/stores/product.store';
-import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-add-weight',

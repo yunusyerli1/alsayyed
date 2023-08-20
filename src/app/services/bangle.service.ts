@@ -4,6 +4,7 @@ import { ProductStore } from '../stores/product.store';
 import { CategoryLogicActionHandler } from './categoryLogic.action';
 import { IResinFeature } from '../helpers/models/IResinFeatureModel';
 import { ProductDesignCategories } from '../helpers/contants/ProductDesignCategories';
+import { ComponentType } from '../helpers/contants/ComponentType';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class BangleService extends CategoryLogicActionHandler implements ICatego
     for (let i = 0; i < quantity; i++) {
       const designCode = data.designBrand + this.setNumbers(i) + (isSetComponent ? '-BK' : '');
       const designCategory = isSetComponent ? ProductDesignCategories.BANGLE_AS_SET : ProductDesignCategories.BANGLE_AS_SINGLE;
-      const newProduct: IResinFeature = { ...data, designCode, designCategory };
+      const componentType =  isSetComponent ? ComponentType.SET_COMPONENT : ComponentType.SINGLE_COMPONENT;
+      const newProduct: IResinFeature = { ...data, designCode, designCategory, componentType };
       productArr.push(newProduct);
     }
     const arrToStore = postfix.length

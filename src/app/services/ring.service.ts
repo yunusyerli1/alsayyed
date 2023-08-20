@@ -4,6 +4,7 @@ import { ProductStore } from '../stores/product.store';
 import { CategoryLogicActionHandler } from './categoryLogic.action';
 import { IResinFeature } from '../helpers/models/IResinFeatureModel';
 import { ProductDesignCategories } from '../helpers/contants/ProductDesignCategories';
+import { ComponentType } from '../helpers/contants/ComponentType';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class RingService extends CategoryLogicActionHandler implements ICategory
     for (let i = 0; i < quantity; i++) {
       const designCode = data.designBrand + this.setNumbers(i) + (isSetComponent ? '-R' : '');
       const designCategory = isSetComponent ? ProductDesignCategories.RING_AS_SET : ProductDesignCategories.RING_AS_SINGLE;
+      const componentType =  isSetComponent ? ComponentType.SET_COMPONENT : ComponentType.SINGLE_COMPONENT;
       const attribute = 'Ring Size';
       const attributeValue = '54,56,58,60,62';
       const newProduct: any = {
@@ -35,7 +37,7 @@ export class RingService extends CategoryLogicActionHandler implements ICategory
         attributeValue,
         rawMaterial: data.rawMaterial,
         style: data.style,
-
+        componentType
       };
       productArr.push(newProduct);
     }

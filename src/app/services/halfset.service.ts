@@ -10,6 +10,7 @@ import { NecklaceService } from './necklace.service';
 import { BraceletService } from './bracelet.service';
 import { PendantService } from './pendant.service';
 import { ProductDesignCategories } from '../helpers/contants/ProductDesignCategories';
+import { ComponentType } from '../helpers/contants/ComponentType';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,8 @@ export class HalfsetService extends CategoryLogicActionHandler implements ICateg
         designCategory: ProductDesignCategories.HALFSET,
         style: data.style,
         rawMaterial: data.rawMaterial,
-        fullsetAttribute: data.fullsetAttribute
+        fullsetAttribute: data.fullsetAttribute,
+        componentType: ComponentType.SET
       }
       arr.push(newObj);
     }

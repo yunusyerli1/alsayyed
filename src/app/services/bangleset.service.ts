@@ -9,6 +9,7 @@ import { RingService } from './ring.service';
 import { NecklaceService } from './necklace.service';
 import { BraceletService } from './bracelet.service';
 import { ProductDesignCategories } from '../helpers/contants/ProductDesignCategories';
+import { ComponentType } from '../helpers/contants/ComponentType';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,8 @@ export class BanglesetService extends CategoryLogicActionHandler implements ICat
         designCategory: ProductDesignCategories.BANGLE_SET,
         style: data.style,
         rawMaterial: data.rawMaterial,
-        fullsetAttribute: data.fullsetAttribute
+        fullsetAttribute: data.fullsetAttribute,
+        componentType: ComponentType.SET
       }
       arr.push(newObj);
     }
