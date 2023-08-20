@@ -42,7 +42,6 @@ export class FullsetService extends CategoryLogicActionHandler implements ICateg
         designCategory: ProductDesignCategories.FULLSET,
         style: data.style,
         rawMaterial: data.rawMaterial,
-        dimensionDefault: data.dimensionDefault,
         fullsetAttribute: data.fullsetAttribute
       }
       arr.push(newObj);

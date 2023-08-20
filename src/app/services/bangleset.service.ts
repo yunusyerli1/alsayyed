@@ -39,7 +39,6 @@ export class BanglesetService extends CategoryLogicActionHandler implements ICat
         designCategory: ProductDesignCategories.BANGLE_SET,
         style: data.style,
         rawMaterial: data.rawMaterial,
-        dimensionDefault: data.dimensionDefault,
         fullsetAttribute: data.fullsetAttribute
       }
       arr.push(newObj);

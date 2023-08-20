@@ -34,7 +34,6 @@ export class ListFirstComponent implements OnInit {
       quantity: ['', [Validators.required, Validators.maxLength(3)]],
       style: ['', Validators.required],
       rawMaterial: ['', Validators.required],
-      dimensionDefault: ['', Validators.maxLength(3)],
       fullsetAttribute: ['']
     });
 
@@ -104,7 +103,7 @@ export class ListFirstComponent implements OnInit {
   exportTableToExcel(): void {
     /* pass here the table id */
     let tableId = document.getElementById('excel-table');
-    this.excelService.exportTableToExcel(tableId, "tablodan.csv")
+    this.excelService.exportTableToExcel(tableId, "tablodan.xlsx")
   }
 
 

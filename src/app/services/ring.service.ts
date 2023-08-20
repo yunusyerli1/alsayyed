@@ -17,6 +17,7 @@ export class RingService extends CategoryLogicActionHandler implements ICategory
   }
 
   run(data: IResinFeature, isSetComponent?: boolean) {
+    console.log("ringservice data", data)
     const quantity = Number(data.quantity || 0);
     const postfix = data.postfix || [];
     const productArr: IResinFeature[] = [];
@@ -25,7 +26,17 @@ export class RingService extends CategoryLogicActionHandler implements ICategory
       const designCategory = isSetComponent ? ProductDesignCategories.RING_AS_SET : ProductDesignCategories.RING_AS_SINGLE;
       const attribute = 'Ring Size';
       const attributeValue = '54,56,58,60,62';
-      const newProduct: IResinFeature = { ...data, designCode, designCategory, attribute, attributeValue };
+      const newProduct: any = {
+        designCategory,
+        //category: data.category,
+        desingBrand: data.designBrand,
+        designCode,
+        attribute,
+        attributeValue,
+        rawMaterial: data.rawMaterial,
+        style: data.style,
+
+      };
       productArr.push(newProduct);
     }
     const arrToStore = postfix.length
@@ -36,7 +47,7 @@ export class RingService extends CategoryLogicActionHandler implements ICategory
         }))
       )
     : productArr;
-
+    console.log("ringservice productArr", productArr)
     this.productStore.addToState(arrToStore);
   }
 

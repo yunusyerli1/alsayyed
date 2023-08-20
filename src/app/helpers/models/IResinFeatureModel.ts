@@ -6,21 +6,18 @@ export interface IFirstFormModel {
   quantity: FormControl<string | null>;
   style: FormControl<string | null>;
   rawMaterial: FormControl<string | null>;
-  dimensionDefault: FormControl<string | null>;
   fullsetAttribute: FormControl<string | null>;
 }
 
 export interface IResinFeature {
-    [x: string]: any;
+    designCategory: string;
     category: string;
     designBrand: string;
     designCode: string;
-    designCategory: string;
-    style: string;
-    rawMaterial: string;
     attribute?: string;
     attributeValue?: string;
-    dimensionDefault?: number;
+    style: string;
+    rawMaterial: string;
     fullsetAttribute?: string;
     quantity?: string;
     postfix?: AutoCompleteModel[];
@@ -32,6 +29,7 @@ export interface IResinFeature {
     pricePrintable?: number;
     priceResin?: number;
     priceGold?: number;
+    [key: string]: any;
 }
 
 export interface AutoCompleteModel {

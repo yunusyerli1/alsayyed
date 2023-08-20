@@ -41,7 +41,6 @@ export class HalfsetService extends CategoryLogicActionHandler implements ICateg
         designCategory: ProductDesignCategories.HALFSET,
         style: data.style,
         rawMaterial: data.rawMaterial,
-        dimensionDefault: data.dimensionDefault,
         fullsetAttribute: data.fullsetAttribute
       }
       arr.push(newObj);
