@@ -30,8 +30,8 @@ export class RingService extends CategoryLogicActionHandler implements ICategory
       const attributeValue = '54,56,58,60,62';
       const newProduct: any = {
         designCategory,
-        //category: data.category,
-        desingBrand: data.designBrand,
+        category: data.category,
+        designBrand: data.designBrand,
         designCode,
         attribute,
         attributeValue,

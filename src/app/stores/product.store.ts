@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 import { deepClone } from "../helpers/object-utils";
 import { ObjectMap, IResinFeature } from "../helpers/models/IResinFeatureModel";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
-import { Observable, of } from "rxjs";
-import { combineLatestWith, map, shareReplay, take, tap } from "rxjs/operators";
+import { Observable, Subscription, of } from "rxjs";
+import { combineLatestWith, first, map, shareReplay, take, tap } from "rxjs/operators";
 import { ComponentType } from "../helpers/contants/ComponentType";
 
 const initialState: IResinFeature[] = [];
@@ -13,7 +13,7 @@ let internalState: IResinFeature[] = deepClone(initialState);
 @Injectable({
   providedIn: 'root',
 })
-export class ProductStore {
+export class ProductStore  implements OnDestroy{
 
   private store = new BehaviorSubject<IResinFeature[]>(internalState);
   public state$ = this.store.asObservable();
@@ -21,7 +21,18 @@ export class ProductStore {
   private weightStore = new BehaviorSubject<any>([]);
   public weightState$ = this.weightStore.asObservable();
 
+  private exportedDataState = new BehaviorSubject<IResinFeature[]>(internalState);
+  public exportedDataState$ = this.exportedDataState.asObservable();
+
   protected cache$: Observable<IResinFeature[]> | null = null;
+
+  private weightSub: Subscription | undefined;
+
+  ngOnDestroy(): void {
+    if (this.weightSub) {
+      this.weightSub.unsubscribe();
+    }
+  }
 
   init(): void {
 
@@ -43,6 +54,7 @@ export class ProductStore {
   }
 
   public addToState(data: IResinFeature[]): void {
+    console.log(data)
     const currentList = this.store.getValue();
     const updatedArray = [...currentList, ...data];
     this.updateState(updatedArray);
@@ -64,6 +76,32 @@ export class ProductStore {
     return storedData ? JSON.parse(storedData) : [];
   }
 
+  //Returns data for exporting
+  get exportedData(): any {
+    const products = this.state;
+    console.log(products)
+    const newArr = products.map((product: IResinFeature) => {
+      return {
+        designCategory: product.designCategory,
+        designBrand: product.designBrand,
+        designCode: product.designCode,
+        attribute: product.attribute,
+        attributeValue: product.attributeValue,
+        rawMaterial: product.rawMaterial,
+        weightResin: product.weightResin,
+        weight22Kt: product.weight22Kt,
+        weight21Kt: product.weight21Kt,
+        weight18Kt: product.weight18Kt,
+        weight14Kt: product.weight14Kt,
+        pricePrintable: product.pricePrintable,
+        priceResin: product.priceResin,
+        priceGold: product.priceGold
+      }
+    })
+    return newArr
+  }
+
+
   //Returns products
   get weight(): ObjectMap[] {
   return this.weightStore.getValue();
@@ -84,11 +122,18 @@ export class ProductStore {
   }
 
   public setWeight() {
-    this.state$.pipe(
-      take(1),
+    if (this.weightSub) {
+      this.weightSub.unsubscribe();
+    }
+
+    this.weightSub = this.state$.pipe(
       combineLatestWith(this.weightState$),
       map(([state, weight]) => {
         if (weight.length === 0) {
+          return state;
+        }
+
+        if (state.length === 0) {
           return state;
         }
 
@@ -104,17 +149,16 @@ export class ProductStore {
             }
             return item;
           });
-          console.log(newArrForWeight)
           const matchingWeightItem = newArrForWeight.filter((weightObj: any) => weightObj.KOD === stateObj.designCode);
           if (matchingWeightItem.length > 0) {
             let keyNumber: number = matchingWeightItem[0]['21ayar'] / 100;
             return {
               ...stateObj,
-              weightResin: (keyNumber / 12).toFixed(4),
-              weight22Kt: (keyNumber * 1.038).toFixed(4),
-              weight21Kt: (keyNumber).toFixed(4),
-              weight18Kt: (keyNumber * 0.882).toFixed(4),
-              weight14Kt: (keyNumber * 0.765).toFixed(4),
+              weightResin: (keyNumber / 12).toFixed(2),
+              weight22Kt: (keyNumber * 1.038).toFixed(2),
+              weight21Kt: (keyNumber).toFixed(2),
+              weight18Kt: (keyNumber * 0.882).toFixed(2),
+              weight14Kt: (keyNumber * 0.765).toFixed(2),
               pricePrintable: 2.0,
               priceResin: 6.0,
               priceGold: 3.0

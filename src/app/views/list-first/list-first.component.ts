@@ -97,7 +97,7 @@ export class ListFirstComponent implements OnInit {
   }
 
   exportToExcel() {
-   this.excelService.exportJSONToExcel(this.productStore.state, "object.xlsx")
+   this.excelService.exportJSONToExcel(this.productStore.exportedData, "object.xlsx")
   }
 
   exportTableToExcel(): void {
