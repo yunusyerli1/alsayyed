@@ -4,6 +4,7 @@ import { ObjectMap, IResinFeature } from "../helpers/models/IResinFeatureModel";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 import { Observable, of } from "rxjs";
 import { combineLatestWith, map, shareReplay, take, tap } from "rxjs/operators";
+import { ComponentType } from "../helpers/contants/ComponentType";
 
 const initialState: IResinFeature[] = [];
 
@@ -90,8 +91,20 @@ export class ProductStore {
         if (weight.length === 0) {
           return state;
         }
+
         const mergedData = state.map((stateObj: any) => {
-          const matchingWeightItem = weight.filter((weightObj: any) => weightObj.KOD === stateObj.designCode);
+          const componentType = stateObj.componentType;
+          const newArrForWeight = weight.map( (item: any) => {
+            const dashIndex = item.KOD.indexOf('-');
+            if (dashIndex !== -1 && componentType === ComponentType.SINGLE_COMPONENT) {
+              return {
+                ...item,
+                KOD: item.KOD.slice(0, dashIndex)
+              }
+            }
+            return item.KOD;
+          });
+          const matchingWeightItem = newArrForWeight.filter((weightObj: any) => weightObj.KOD === stateObj.designCode);
           if (matchingWeightItem.length > 0) {
             let keyNumber: number = matchingWeightItem[0]['21ayar'] / 100;
             return {
@@ -101,7 +114,7 @@ export class ProductStore {
               weight21Kt: (keyNumber).toFixed(4),
               weight18Kt: (keyNumber * 0.882).toFixed(4),
               weight14Kt: (keyNumber * 0.765).toFixed(4),
-              pricePrintable:2.0,
+              pricePrintable: 2.0,
               priceResin: 6.0,
               priceGold: 3.0
             };
