@@ -21,8 +21,8 @@ export class ProductStore  implements OnDestroy{
   private weightStore = new BehaviorSubject<any>([]);
   public weightState$ = this.weightStore.asObservable();
 
-  private exportedDataState = new BehaviorSubject<IResinFeature[]>(internalState);
-  public exportedDataState$ = this.exportedDataState.asObservable();
+  // private exportedDataState = new BehaviorSubject<IResinFeature[]>(internalState);
+  // public exportedDataState$ = this.exportedDataState.asObservable();
 
   protected cache$: Observable<IResinFeature[]> | null = null;
 
@@ -88,6 +88,9 @@ export class ProductStore  implements OnDestroy{
         'Product Attributes/Attribute': product.attribute,
         'Product Attributes/Attribute/Value': product.attributeValue,
         'Raw material': product.rawMaterial,
+        'Tags': product.style,
+        'Product Type': 'Consumable',
+        'Unit of Measure/ID': 'Unit(s)',
         'Resin Wt. (Gr)': product.weightResin,
         '22 Kt Gold Wt. (Gr)': product.weight22Kt,
         '21 Kt Gold Wt. (Gr)': product.weight21Kt,
