@@ -4,6 +4,7 @@ import { ProductStore } from '../stores/product.store';
 import { CategoryLogicActionHandler } from './categoryLogic.action';
 import { IResinFeature } from '../helpers/models/IResinFeatureModel';
 import { ProductDesignCategories } from '../helpers/contants/ProductDesignCategories';
+import { WebsiteProductCategories } from '../helpers/contants/WebsiteProductCategories';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class NecklaceService extends CategoryLogicActionHandler implements ICate
     for (let i = 0; i < quantity; i++) {
       const designCode = data.designBrand + this.setNumbers(i) + (isSetComponent ? '-N' : '');
       const designCategory = isSetComponent ? ProductDesignCategories.NECKLACE_AS_SET : ProductDesignCategories.NECKLACE_AS_SINGLE;
-      const newProduct: IResinFeature = { ...data, designCode, designCategory };
+      const productCategory = WebsiteProductCategories.NECKLACE;
+      const newProduct: IResinFeature = { ...data, designCode, designCategory, productCategory };
       productArr.push(newProduct);
     }
     const arrToStore = postfix.length

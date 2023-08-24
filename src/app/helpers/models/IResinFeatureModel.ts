@@ -21,6 +21,7 @@ export interface IResinFeature {
     fullsetAttribute?: string;
     quantity?: string;
     componentType: number;
+    productCategory?: string;
     postfix?: AutoCompleteModel[];
     weightResin?: number;
     weight22Kt?: number;

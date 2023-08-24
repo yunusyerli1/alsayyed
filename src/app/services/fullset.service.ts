@@ -10,6 +10,7 @@ import { NecklaceService } from './necklace.service';
 import { BraceletService } from './bracelet.service';
 import { ProductDesignCategories } from '../helpers/contants/ProductDesignCategories';
 import { ComponentType } from '../helpers/contants/ComponentType';
+import { WebsiteProductCategories } from '../helpers/contants/WebsiteProductCategories';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,7 @@ export class FullsetService extends CategoryLogicActionHandler implements ICateg
         designBrand: data.designBrand,
         designCode: data.designBrand + this.setNumbers(i),
         designCategory: ProductDesignCategories.FULLSET,
+        productCategory: WebsiteProductCategories.FULLSET,
         style: data.style,
         rawMaterial: data.rawMaterial,
         fullsetAttribute: data.fullsetAttribute,

@@ -5,6 +5,7 @@ import { CategoryLogicActionHandler } from './categoryLogic.action';
 import { IResinFeature } from '../helpers/models/IResinFeatureModel';
 import { ProductDesignCategories } from '../helpers/contants/ProductDesignCategories';
 import { ComponentType } from '../helpers/contants/ComponentType';
+import { WebsiteProductCategories } from '../helpers/contants/WebsiteProductCategories';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class ChainService extends CategoryLogicActionHandler implements ICategor
       const designCode = data.designBrand + this.setNumbers(i);
       const designCategory = ProductDesignCategories.CHAIN_AS_SINGLE;
       const componentType =  ComponentType.SINGLE_COMPONENT;
-      const newProduct: IResinFeature = { ...data, designCode, designCategory, componentType };
+      const productCategory = WebsiteProductCategories.CHAIN;
+      const newProduct: IResinFeature = { ...data, designCode, designCategory, componentType, productCategory };
       productArr.push(newProduct);
     }
     const arrToStore = postfix.length

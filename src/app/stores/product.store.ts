@@ -85,6 +85,7 @@ export class ProductStore  implements OnDestroy{
         'Design Category': product.designCategory,
         'Design Brand': product.designBrand,
         'Design Code': product.designCode,
+        'Website Product Category / External Id': product.productCategory,
         'Product Attributes/Attribute': product.attribute,
         'Product Attributes/Attribute/Value': product.attributeValue,
         'Raw material': product.rawMaterial,
