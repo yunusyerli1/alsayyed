@@ -1,7 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
+import { FilesForUpload } from 'src/app/helpers/contants/FilesForUpload';
 import { ExcelServiceService } from 'src/app/services/excel-service.service';
 import { ProductStore } from 'src/app/stores/product.store';
+import { WeightStore } from 'src/app/stores/weight.store';
 
 @Component({
   selector: 'app-add-weight',
@@ -16,29 +18,24 @@ export class AddWeightComponent {
 
   @ViewChild('fileInput') fileInput!: ElementRef;
 
-  constructor(private excelService: ExcelServiceService, private productStore: ProductStore) {}
+  constructor(private excelService: ExcelServiceService, private weightStore: WeightStore) {}
 
   ngOnInit(): void {
-    this.productWeights$ = this.productStore.weightState$;
+    this.productWeights$ = this.weightStore.weightState$;
   }
 
   uploadFile(event: any): void {
     this.isDisable = false;
-    this.excelService.uploadFile(event)
+    this.excelService.uploadFile(event, FilesForUpload.WEIGHT)
   }
 
   setWeight() {
-    this.productStore.setWeight();
-    this.clean();
+    this.weightStore.setWeight();
     this.isDisable = true;
 
     if (this.fileInput) {
       this.fileInput.nativeElement.value = null;
     }
-  }
-
-  clean() {
-
   }
 
 }

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ICategoryManagerModel } from '../helpers/models/ICategoryManager';
-import { ProductStore } from '../stores/product.store';
-import { CategoryLogicActionHandler } from './categoryLogic.action';
-import { IResinFeature } from '../helpers/models/IResinFeatureModel';
-import { ProductDesignCategories } from '../helpers/contants/ProductDesignCategories';
-import { WebsiteProductCategories } from '../helpers/contants/WebsiteProductCategories';
+import { ICategoryManagerModel } from '../../helpers/models/ICategoryManager';
+import { ProductStore } from '../../stores/product.store';
+import { CategoryLogicActionHandler } from '../categoryLogic.action';
+import { IResinFeature } from '../../helpers/models/IResinFeatureModel';
+import { ProductDesignCategories } from '../../helpers/contants/ProductDesignCategories';
+import { WebsiteProductCategories } from '../../helpers/contants/WebsiteProductCategories';
 
 @Injectable({
   providedIn: 'root'

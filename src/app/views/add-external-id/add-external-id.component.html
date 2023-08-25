@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-12 mb-3">
+    <h1>Add External Ids</h1>
+
+    <div style="max-height: 400px; overflow-y: auto;">
+      <app-table></app-table>
+    </div>
+
+  </div>
+  <div class="col-4">
+    <div class="form-group">
+      <label for="fullsetAttribute">Import External Ids:</label>
+      <input type="file" class="form-control form-control-sm" (change)="uploadFile($event)"  placeholder="Upload file" accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"  multiple="false" #fileInput>
+    </div>
+    <div class="mt-3" *ngIf="(externalIds$ | async) as productExts">
+      <button class="btn btn-primary btn-sm" (click)= "setExternalIds()" [disabled]="isDisable">Set External Ids</button>
+    </div>
+  </div>
+
+  <div class="col-8" style="max-height: 420px; overflow-y: auto;" *ngIf="(externalIds$ | async) as productExts">
+
+    <table class="table table-striped" id="excel-table" *ngIf="productExts.length">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">External ID</th>
+          <th scope="col">Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of productExts; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ product.ExternalID }}</td>
+          <td>{{ product.Name }}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>

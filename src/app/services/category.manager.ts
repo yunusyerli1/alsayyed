@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import { ICategoryManagerModel } from '../helpers/models/ICategoryManager';
-import { RingService } from './ring.service';
-import { EaringService } from './earing.service';
-import { BangleService } from './bangle.service';
-import { BraceletService } from './bracelet.service';
-import { PendantService } from './pendant.service';
-import { NecklaceService } from './necklace.service';
-import { FullsetService } from './fullset.service';
-import { HalfsetService } from './halfset.service';
-import { BanglesetService } from './bangleset.service';
-import { ChainService } from './chain.service';
+import { RingService } from './category-services/ring.service';
+import { EaringService } from './category-services/earing.service';
+import { BangleService } from './category-services/bangle.service';
+import { BraceletService } from './category-services/bracelet.service';
+import { PendantService } from './category-services/pendant.service';
+import { NecklaceService } from './category-services/necklace.service';
+import { FullsetService } from './category-services/fullset.service';
+import { HalfsetService } from './category-services/halfset.service';
+import { BanglesetService } from './category-services/bangleset.service';
+import { ChainService } from './category-services/chain.service';
 
 @Injectable({
     providedIn: 'root'

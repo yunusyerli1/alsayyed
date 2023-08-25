@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import * as XLSX from 'xlsx';
-import { ProductStore } from '../stores/product.store';
 import { ObjectMap } from '../helpers/models/IResinFeatureModel';
+import { FilesForUpload } from '../helpers/contants/FilesForUpload';
+import { WeightStore } from '../stores/weight.store';
+import { ExternalIdStore } from '../stores/externalid.store';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExcelServiceService {
 
-  constructor( private productStore: ProductStore) { }
+  constructor(private weightStore: WeightStore, private externalIdStore: ExternalIdStore) { }
 
   exportJSONToExcel(json_list: any[], fileName: string) {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json_list);
@@ -30,7 +32,7 @@ export class ExcelServiceService {
     XLSX.writeFile(wb, fileName);
   }
 
-  uploadFile(event: any) {
+  uploadFile(event: any, filetype:number) {
     const target: DataTransfer = <DataTransfer>(event.target);
     if (target.files.length !== 1) throw new Error('Cannot use multiple files');
     const file: File = event.target.files[0];
@@ -48,7 +50,16 @@ export class ExcelServiceService {
       /* save data */
       const importedData: ObjectMap[] = XLSX.utils.sheet_to_json(ws);
 
-      this.productStore.sendWeightData(importedData);
+      switch(filetype) {
+        case FilesForUpload.WEIGHT:
+          this.weightStore.importWeightData(importedData);
+          break;
+        case FilesForUpload.EXTERNAL_IDS:
+          this.externalIdStore.importExternalIds(importedData);
+          break;
+      }
+
+
     }
   }
 

@@ -24,14 +24,14 @@ export class AppComponent {
       route: "weight"
     },
     {
-      title: "3.Liste",
+      title: "Add Ext Ids",
       icon: "wrench",
-      route: "service"
+      route: "external-ids"
     },
     {
-      title: "4.Liste",
+      title: "Add Relations",
       icon: "database",
-      route: "skills"
+      route: "relationship"
     },
     {
       title: "5.Liste",

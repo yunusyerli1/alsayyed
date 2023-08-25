@@ -8,6 +8,7 @@
         <th scope="col">Category</th>
         <th scope="col">Design Brand</th>
         <th scope="col">Design Code</th>
+        <th scope="col">Ext Id</th>
         <th scope="col">Product Attributes</th>
         <th scope="col">Product Attributes Values</th>
         <th scope="col">Raw Mat</th>
@@ -30,6 +31,7 @@
         <td>{{item.category}}</td>
         <td>{{item.designBrand}}</td>
         <td>{{item.designCode}}</td>
+        <td>{{item.externalId | slice:-9}}</td>
         <td>{{item.attribute}}</td>
         <td>{{item.attributeValue}}</td>
         <td>{{item.rawMaterial}}</td>

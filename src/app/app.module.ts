@@ -19,6 +19,8 @@ import { TagInputModule } from 'ngx-chips';
 import { ChipsTagInputComponent } from './components/chips-tag-input/chips-tag-input.component';
 import { TableComponent } from './components/table/table.component';
 import { AddWeightComponent } from './views/add-weight/add-weight.component';
+import { AddExternalIdComponent } from './views/add-external-id/add-external-id.component';
+import { AddRelationsComponent } from './views/add-relations/add-relations.component';
 
 
 @NgModule({
@@ -34,6 +36,8 @@ import { AddWeightComponent } from './views/add-weight/add-weight.component';
     ChipsTagInputComponent,
     TableComponent,
     AddWeightComponent,
+    AddExternalIdComponent,
+    AddRelationsComponent,
 
   ],
   imports: [
