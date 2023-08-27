@@ -50,14 +50,13 @@ export class WeightStore  implements OnDestroy{
     return state.map((stateObj: any) => {
       const componentType = stateObj.componentType;
       const newArrForWeight = weight.map((item: any) => {
-        const dashIndex = item.KOD.indexOf('-');
-        if (dashIndex !== -1 && componentType === ComponentType.SINGLE_COMPONENT) {
-          return {
-            ...item,
-            KOD: item.KOD.slice(0, dashIndex)
-          }
+        const suffixes = ["-R", "-E", "-BK", "BL", "P", "N"];
+        const regex = new RegExp(`(${suffixes.join('|')})$`);
+        if(regex && componentType === ComponentType.SINGLE_COMPONENT) {
+          item.KOD = item.KOD.replace(regex, '');
+          return item;
         }
-        return item;
+          return item;
       });
       const matchingWeightItem = newArrForWeight.find((weightObj: any) => weightObj.KOD === stateObj.designCode);
 
@@ -94,22 +93,43 @@ export class WeightStore  implements OnDestroy{
   }
 
   public importWeightData(data: any) {
-    const modifiedData = this.modifyWeightData(data);
+    const parts = data[0].KOD.split('-');
+    const suffix = parts[1];
+    const modifiedData = this.modifyWeightData(data, (suffix || ''));
     this.updateWeightState(modifiedData)
   }
 
-  private modifyWeightData(data: ObjectMap[]): ObjectMap[] {
-    console.log(data)
+  private modifyWeightData(data: ObjectMap[], suffix?: string): ObjectMap[] {
+    if(suffix) {
+      switch(suffix) {
+        case 'P':
+          suffix = '';
+          break;
+        case 'E':
+          suffix = '';
+          break;
+        case 'R':
+          suffix = '';
+          break;
+        case 'BK':
+          suffix = '';
+          break;
+        case 'BL':
+          suffix = '';
+          break;
+        case 'N':
+          suffix = '';
+          break;
+      }
+    }
 
     //Fix TOPLAM issue
     const updatedArray = this.updateKODValues(data);
-    console.log(updatedArray);
 
     //Fix empty value or No KOD issue
     const filteredArray = updatedArray.filter((item: ObjectMap) => {
       return Object.keys(item).length > 0 && item.hasOwnProperty("KOD");
     });
-    console.log(filteredArray);
     const modifiedArray = filteredArray.map(item => {
       const modifiedItem:any = {};
       for (const key in item) {
@@ -117,19 +137,20 @@ export class WeightStore  implements OnDestroy{
             //Replace the space eg. '14 ayar'
               const newKey: any = key.replace(/\s+/g, '');
               modifiedItem[newKey] = item[key];
-              //This regex for making 2 groups with non-digit and digit groups.
-              const kod = item['KOD'];
+
+              if (key === "KOD") {
+
+              }
+               //This regex for making 2 groups with non-digit and digit groups.
+               const kod = item['KOD'];
 
               const match = kod.match(/(\D+)(\d+)/);
               if (match) {
                 const word = match[1];
-                console.log(match)
-
                 let number = Number(match[2]);
 
                  if (number > 9) {
-                  console.log(modifiedItem['KOD'])
-                     const kodWithoutZero = word + number;
+                     const kodWithoutZero = word + number + '-' +suffix;
                      if (kodWithoutZero.length !== modifiedItem['KOD'].length) {
                       modifiedItem['KOD'] = kodWithoutZero;
                     }
@@ -140,7 +161,6 @@ export class WeightStore  implements OnDestroy{
       }
       return modifiedItem;
     });
-    console.log(modifiedArray);
 
     return modifiedArray;
   }
@@ -149,13 +169,6 @@ export class WeightStore  implements OnDestroy{
     //This method is for if KOD is 'TOPLAM'
     let currentName: string | null = null;
 
-    for (const obj of inputArray) {
-      if (!obj["TOPLAM"]) {
-        return inputArray;
-      }
-  }
-
-
     for (let i = 0; i < inputArray.length; i++) {
       const currentItem = inputArray[i];
 
@@ -163,9 +176,6 @@ export class WeightStore  implements OnDestroy{
         if (currentName !== null) {
           inputArray[i].KOD = currentName;
         }
-      } else {
-        const regex = /-.*/;
-        currentName = currentItem.KOD.replace(regex, '');
       }
     }
 
