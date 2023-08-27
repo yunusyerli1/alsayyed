@@ -26,7 +26,8 @@ export class WeightStore  implements OnDestroy{
     }
   }
 
-  private updateWightState(data: any): void {
+  public updateWeightState(data: any): void {
+    console.log(data)
     this.weightStore.next(data);
   }
 
@@ -94,7 +95,7 @@ export class WeightStore  implements OnDestroy{
 
   public importWeightData(data: any) {
     const modifiedData = this.modifyWeightData(data);
-    this.updateWightState(modifiedData)
+    this.updateWeightState(modifiedData)
   }
 
   private modifyWeightData(data: ObjectMap[]): ObjectMap[] {

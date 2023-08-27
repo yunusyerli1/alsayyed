@@ -18,39 +18,11 @@
   </div>
 
   <div class="col-8" style="max-height: 420px; overflow-y: auto;" *ngIf="(productWeights$ | async) as productWeights">
-
-    <table class="table table-striped" id="excel-table" *ngIf="productWeights.length">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Kod</th>
-          <th scope="col">Vol</th>
-          <th scope="col">14Ayar</th>
-          <th scope="col">18Ayar</th>
-          <th scope="col">21 Ayar</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of productWeights; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ product.KOD }}</td>
-          <td>{{ product.VOLUM }}</td>
-          <td>{{ product['14ayar'] }}</td>
-          <td>{{ product['18ayar'] }}</td>
-          <td>{{ product['21ayar'] }}</td>
-        </tr>
-
-      </tbody>
-    </table>
+    <app-editable-table *ngIf="productWeights.length"
+    [tableData]="productWeights"
+    (dataChanged)="onDataChanged($event)">
+  </app-editable-table>
   </div>
-
-
-
-
-
-
-
-
 
 </div>
 

@@ -1,0 +1,21 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" *ngFor="let key of rowKeys">{{key}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of tableData; let rowIndex = index; trackBy: tracker">
+      <td>{{ rowIndex + 1 }}</td>
+      <ng-container *ngFor="let key of rowKeys; let cellIndex = index; trackBy: tracker">
+        <td>
+          <div class="d-flex ">
+            <input type="text"  [attr.value]="row[key]" (input)="onInputChanged($event, rowIndex, cellIndex, key)"/>
+          </div>
+
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+  </table>

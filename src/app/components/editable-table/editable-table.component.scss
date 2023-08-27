@@ -1,0 +1,11 @@
+table {
+  font-size: 12px;
+  input {
+    border: none;
+    background-color: transparent;
+    &:focus-visible {
+      outline: none
+    }
+  }
+}
+

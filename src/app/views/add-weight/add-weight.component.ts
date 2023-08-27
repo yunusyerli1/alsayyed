@@ -26,7 +26,7 @@ export class AddWeightComponent {
 
   uploadFile(event: any): void {
     this.isDisable = false;
-    this.excelService.uploadFile(event, FilesForUpload.WEIGHT)
+    this.excelService.uploadFile(event, FilesForUpload.WEIGHT);
   }
 
   setWeight() {
@@ -36,6 +36,12 @@ export class AddWeightComponent {
     if (this.fileInput) {
       this.fileInput.nativeElement.value = null;
     }
+  }
+
+  onDataChanged(event: any[]): void {
+    console.log(event)
+    this.weightStore.updateWeightState(event);
+    //this.tableData = event;
   }
 
 }
