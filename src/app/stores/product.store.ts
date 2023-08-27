@@ -100,19 +100,6 @@ export class ProductStore {
     return this.cache$ !== null;
   }
 
-  setRelationships() {
-    const products = this.state;
-    console.log(products)
-    const setArr = products.filter((product:any) => product.componentType === ComponentType.SET);
-    const setCompArr= products.filter((product:any) => product.componentType === ComponentType.SET_COMPONENT);
-    console.log(setArr)
-    console.log(setCompArr)
-    const newArr = setArr.map((setItem: any) => {
-      const filteredItems = setCompArr.filter((setCompItem: any) => setCompItem.designCode.includes(setItem.designCode));
 
-      return filteredItems.push(setItem)
-    })
-    console.log(newArr)
-  }
 
 }

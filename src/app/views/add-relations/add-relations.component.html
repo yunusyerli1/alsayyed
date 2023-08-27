@@ -11,34 +11,33 @@
     <div class="mt-3">
       <button class="btn btn-primary btn-sm" (click)= "setRelations()">Set Relationship</button>
     </div>
+    <div class="mt-3">
+      <button class="btn btn-primary btn-sm" (click)= "exportRelations()">Export Relationship</button>
+    </div>
   </div>
 
-  <!-- <div class="col-8" style="max-height: 420px; overflow-y: auto;" *ngIf="(productWeights$ | async) as productWeights">
+  <div class="col-8" style="max-height: 420px; overflow-y: auto;" *ngIf="(relationships$ | async) as relationships">
 
-    <table class="table table-striped" id="excel-table" *ngIf="productWeights.length">
+    <table class="table table-striped" id="excel-table" *ngIf="relationships.length">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Kod</th>
-          <th scope="col">Vol</th>
-          <th scope="col">14Ayar</th>
-          <th scope="col">18Ayar</th>
-          <th scope="col">21 Ayar</th>
+          <th scope="col">Name</th>
+          <th scope="col">Ext ID</th>
+          <th scope="col">Combined Related</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of productWeights; let i = index">
+        <tr *ngFor="let relation of relationships; let i = index">
           <td>{{ i + 1 }}</td>
-          <td>{{ product.KOD }}</td>
-          <td>{{ product.VOLUM }}</td>
-          <td>{{ product['14ayar'] }}</td>
-          <td>{{ product['18ayar'] }}</td>
-          <td>{{ product['21ayar'] }}</td>
+          <td>{{ relation.name }}</td>
+          <td>{{ relation.externalId }}</td>
+          <td>{{ relation.combinedRelated }}</td>
         </tr>
 
       </tbody>
     </table>
-  </div> -->
+  </div>
 
 
 </div>

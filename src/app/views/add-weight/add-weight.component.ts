@@ -39,9 +39,7 @@ export class AddWeightComponent {
   }
 
   onDataChanged(event: any[]): void {
-    console.log(event)
     this.weightStore.updateWeightState(event);
-    //this.tableData = event;
   }
 
 }
