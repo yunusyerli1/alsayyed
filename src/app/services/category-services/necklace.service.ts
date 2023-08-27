@@ -32,7 +32,7 @@ export class NecklaceService extends CategoryLogicActionHandler implements ICate
     ? productArr.flatMap(el =>
         postfix.map(postfixEl => ({
           ...el,
-          designBrand: el.designBrand + '-' + postfixEl.value,
+          designCode: el.designCode + '-' + postfixEl.value,
         }))
       )
     : productArr;

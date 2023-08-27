@@ -22,6 +22,7 @@ import { AddWeightComponent } from './views/add-weight/add-weight.component';
 import { AddExternalIdComponent } from './views/add-external-id/add-external-id.component';
 import { AddRelationsComponent } from './views/add-relations/add-relations.component';
 import { EditableTableComponent } from './components/editable-table/editable-table.component';
+import { ListDownloadComponent } from './views/list-download/list-download.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { EditableTableComponent } from './components/editable-table/editable-tab
     AddExternalIdComponent,
     AddRelationsComponent,
     EditableTableComponent,
+    ListDownloadComponent,
 
   ],
   imports: [

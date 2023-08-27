@@ -6,6 +6,7 @@ import { ListFirstComponent } from './views/list-first/list-first.component';
 import { AddWeightComponent } from './views/add-weight/add-weight.component';
 import { AddExternalIdComponent } from './views/add-external-id/add-external-id.component';
 import { AddRelationsComponent } from './views/add-relations/add-relations.component';
+import { ListDownloadComponent } from './views/list-download/list-download.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -14,8 +15,7 @@ const routes: Routes = [
   { path: "weight", component: AddWeightComponent },
   { path: "external-ids", component: AddExternalIdComponent },
   { path: "relationship", component: AddRelationsComponent },
-
-  // { path: "contact", component: ContactComponent },
+  { path: "download", component: ListDownloadComponent },
   { path: "404", component: NotFoundComponent },
   { path: "**", component: NotFoundComponent },
 ];

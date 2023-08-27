@@ -34,7 +34,7 @@ export class BangleService extends CategoryLogicActionHandler implements ICatego
     ? productArr.flatMap(el =>
         postfix.map(postfixEl => ({
           ...el,
-          designBrand: el.designBrand + '-' + postfixEl.value,
+          designCode: el.designCode + '-' + postfixEl.value,
         }))
       )
     : productArr;

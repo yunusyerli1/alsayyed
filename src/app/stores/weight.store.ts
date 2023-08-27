@@ -117,16 +117,19 @@ export class WeightStore  implements OnDestroy{
             //Replace the space eg. '14 ayar'
               const newKey: any = key.replace(/\s+/g, '');
               modifiedItem[newKey] = item[key];
-
               //This regex for making 2 groups with non-digit and digit groups.
               const kod = item['KOD'];
+
               const match = kod.match(/(\D+)(\d+)/);
               if (match) {
                 const word = match[1];
-                let number = parseInt(match[2], 10);
-                 if (number > 9) {
-                     const kodWithoutZero = modifiedItem['KOD'].replace(/0/g, '');
+                console.log(match)
 
+                let number = Number(match[2]);
+
+                 if (number > 9) {
+                  console.log(modifiedItem['KOD'])
+                     const kodWithoutZero = word + number;
                      if (kodWithoutZero.length !== modifiedItem['KOD'].length) {
                       modifiedItem['KOD'] = kodWithoutZero;
                     }
@@ -145,6 +148,13 @@ export class WeightStore  implements OnDestroy{
    updateKODValues(inputArray: any[]): any[] {
     //This method is for if KOD is 'TOPLAM'
     let currentName: string | null = null;
+
+    for (const obj of inputArray) {
+      if (!obj["TOPLAM"]) {
+        return inputArray;
+      }
+  }
+
 
     for (let i = 0; i < inputArray.length; i++) {
       const currentItem = inputArray[i];

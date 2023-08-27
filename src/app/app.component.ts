@@ -34,9 +34,9 @@ export class AppComponent {
       route: "relationship"
     },
     {
-      title: "5.Liste",
+      title: "List Download",
       icon: "postcard",
-      route: "contact"
+      route: "/download"
     }
   ]
 

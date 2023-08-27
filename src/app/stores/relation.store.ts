@@ -1,8 +1,6 @@
-import { Injectable, OnDestroy } from "@angular/core";
-import { IResinFeature, ObjectMap } from "../helpers/models/IResinFeatureModel";
+import { Injectable } from "@angular/core";
+import { IResinFeature } from "../helpers/models/IResinFeatureModel";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
-import { Observable, Subscription } from "rxjs";
-import { combineLatestWith, filter, map, tap } from "rxjs/operators";
 import { ComponentType } from "../helpers/contants/ComponentType";
 import { ProductStore } from "./product.store";
 
