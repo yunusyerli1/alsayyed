@@ -19,7 +19,6 @@ export class EaringService extends CategoryLogicActionHandler implements ICatego
   }
 
   run(data: IResinFeature, isSetComponent?: boolean) {
-    console.log("data", data)
     const quantity = Number(data.quantity || 0);
     const postfix = data.postfix || [];
     const productArr: IResinFeature[] = [];

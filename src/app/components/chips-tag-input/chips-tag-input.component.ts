@@ -12,32 +12,16 @@ import { AutoCompleteModel } from 'src/app/helpers/models/IResinFeatureModel';
 export class ChipsTagInputComponent {
 
   @Output() valuesToBeSent = new EventEmitter<AutoCompleteModel[]>();
-
-     //selectedValues: Option[] = [];
-
-
-     public selectedValues: AutoCompleteModel[] = [];
-
-    options: any[] = [];
+  selectedValues: AutoCompleteModel[] = [];
+  options: any[] = [];
 
 
-   public onAdd(): void {
-     const value = this.selectedValues.map(option => option.value);
-     // this.field.valueList = value;
-     // this.field.formControl.setValue(value);
-     // this.field.formControl.markAsDirty();
-     console.log("add", this.selectedValues)
-     this.valuesToBeSent.emit(this.selectedValues);
+  public onAdd(): void {
+    this.valuesToBeSent.emit(this.selectedValues);
  }
 
  public onRemove(): void {
-     const value = this.selectedValues.map(option => option.value);
-     // this.field.valueList = value;
-     // this.field.formControl.setValue(value);
-     // this.field.formControl.markAsDirty();
-     console.log("add", this.selectedValues)
-     this.valuesToBeSent.emit(this.selectedValues);
-
+    this.valuesToBeSent.emit(this.selectedValues);
  }
 
 }

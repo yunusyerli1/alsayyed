@@ -19,7 +19,6 @@ export class RingService extends CategoryLogicActionHandler implements ICategory
   }
 
   run(data: IResinFeature, isSetComponent?: boolean) {
-    console.log("ringservice data", data)
     const quantity = Number(data.quantity || 0);
     const postfix = data.postfix || [];
     const productArr: IResinFeature[] = [];
@@ -52,7 +51,6 @@ export class RingService extends CategoryLogicActionHandler implements ICategory
         }))
       )
     : productArr;
-    console.log("ringservice productArr", productArr)
     this.productStore.addToState(arrToStore);
   }
 

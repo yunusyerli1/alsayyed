@@ -59,7 +59,6 @@ export class ListFirstComponent implements OnInit {
 
   setTags(e: AutoCompleteModel[]) {
       this.selectedTags = e;
-      console.log("this.selectedTags", this.selectedTags)
   }
 
   setCategories() {
@@ -86,9 +85,9 @@ export class ListFirstComponent implements OnInit {
     if (!operator) {
       console.warn(`Operator: '${operatorKey}' not found.`);
     }
-    console.log("FORMDAN CIKAN data", data)
     operator?.run(data);
     this.listFirstForm.reset();
+    this.selectedTags = [];
   }
 
   deleteBrand() {

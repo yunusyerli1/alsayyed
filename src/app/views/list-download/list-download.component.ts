@@ -30,5 +30,9 @@ export class ListDownloadComponent {
     this.excelService.exportJSONToExcel(this.productStore.exportedImageImportExtraData, "imageExtraImport.xlsx")
   }
 
+  downloadIsPublished() {
+    this.excelService.exportJSONToExcel(this.productStore.exportedPublishedData, "isPublished.xlsx")
+  }
+
 
 }

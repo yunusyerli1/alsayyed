@@ -99,41 +99,56 @@ export class ProductStore {
     return newArr
   }
 
-    //Returns order type data for exporting
-    get exportedOrderTypeData(): any {
-      const products = this.state;
-      const newArr = products.map((product: IResinFeature) => {
-        return {
-          'External ID': product.externalId,
-          'Name': product.designCode,
-          'Product Attributes/Attribute': 'Order Type',
-          'Product Attributes/Attribute/Value': '3D Printed Resin,Printable Designs,Finished Jewelry',
-        }
-      })
+  //Returns order type data for exporting
+  get exportedOrderTypeData(): any {
+    const products = this.state;
+    const newArr = products.map((product: IResinFeature) => {
+      return {
+        'External ID': product.externalId,
+        'Name': product.designCode,
+        'Product Attributes/Attribute': 'Order Type',
+        'Product Attributes/Attribute/Value': '3D Printed Resin,Printable Designs,Finished Jewelry',
+      }
+    })
       return newArr
-    }
+  }
 
-     //Returns image import one data for exporting
-     get exportedImageImportData(): any {
-      const products = this.state;
-      const newArr = products.map((product: IResinFeature) => {
-        return {
-          'Product Code,URL': product.designCode + ',' + 'http://images.alsayyeddesign.com/' + product.category + '/' + product.designBrand + '/' + product.designCode + '-1.jpg'
-        }
-      })
-      return newArr
+  //Returns image import one data for exporting
+  get exportedImageImportData(): any {
+  const products = this.state;
+  const newArr = products.map((product: IResinFeature) => {
+    const category = product.category === 'Bangle' ? 'Bracelets' : product.category;
+    return {
+      'Product Code,URL': product.designCode + ',' + 'http://images.alsayyeddesign.com/' + category + '/' + product.designBrand + '/' + product.designCode + '-1.jpg'
     }
+  })
+    return newArr
+  }
 
-        //Returns image import one data for exporting
-        get exportedImageImportExtraData(): any {
-          const products = this.state;
-          const newArr = products.map((product: IResinFeature) => {
-            return {
-              'Product Code,URL': product.designCode + ',' + 'http://images.alsayyeddesign.com/' + product.category + '/' + product.designBrand + '/' + product.designCode + '-2.jpg'
-            }
-          })
-          return newArr
-        }
+  //Returns image import one data for exporting
+  get exportedImageImportExtraData(): any {
+    const products = this.state;
+    const newArr = products.map((product: IResinFeature) => {
+      const category = product.category === 'Bangle' ? 'Bracelets' : product.category;
+      return {
+        'Product Code,URL': product.designCode + ',' + 'http://images.alsayyeddesign.com/' + category + '/' + product.designBrand + '/' + product.designCode + '-2.jpg'
+      }
+    })
+    return newArr
+  }
+
+  //Returns ipublished data for exporting
+  get exportedPublishedData(): any {
+    const products = this.state;
+    const newArr = products.map((product: IResinFeature) => {
+      return {
+        'External ID': product.externalId,
+        'Name': product.designCode,
+        'is_published': 'TRUE'
+      }
+    })
+    return newArr
+  }
 
 
   //Returns products

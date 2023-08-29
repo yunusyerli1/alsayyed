@@ -12,6 +12,10 @@
       <label for="fullsetAttribute">Import Weights:</label>
       <input type="file" class="form-control form-control-sm" (change)="uploadFile($event)"  placeholder="Upload file" accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"  multiple="false" #fileInput>
     </div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"  [(ngModel)]="isSetComponent"  checked>
+      <label class="form-check-label" for="flexSwitchCheckChecked">Set Mi?</label>
+    </div>
     <div class="mt-3" *ngIf="(productWeights$ | async) as productWeights">
       <button class="btn btn-primary btn-sm" (click)= "setWeight()" [disabled]="isDisable">Set Weight</button>
     </div>

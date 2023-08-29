@@ -36,25 +36,43 @@ export class WeightStore  implements OnDestroy{
     return this.weightStore.getValue();
   }
 
+  public setWeight(isSetComponent: boolean): void {
+    if (this.weightSub) {
+      this.weightSub.unsubscribe();
+    }
+
+    this.weightSub = this.combineStateWithAnyState$(this.weightState$)
+    .pipe(
+      map(([state, weight]) => this.mergeStateWithWeight(state, weight, isSetComponent)),
+      tap(data => this.productStore.updateState(data))
+    )
+    .subscribe();
+  }
+
   private combineStateWithAnyState$(coupleState:Observable<any>): Observable<[any[], any[]]> {
     return this.productStore.state$.pipe(
       combineLatestWith(coupleState)
     );
   }
 
-  private mergeStateWithWeight(state: any[], weight: any[]): any[] {
+  private mergeStateWithWeight(state: any[], weight: any[], isSetComponent: boolean): any[] {
     if (weight.length === 0 || state.length === 0) {
       return state;
     }
+console.log(weight)
+    console.log(weight)
 
     return state.map((stateObj: any) => {
       const componentType = stateObj.componentType;
       const newArrForWeight = weight.map((item: any) => {
-        const suffixes = ["-R", "-E", "-BK", "BL", "P", "N"];
-        const regex = new RegExp(`(${suffixes.join('|')})$`);
-        if(regex && componentType === ComponentType.SINGLE_COMPONENT) {
-          item.KOD = item.KOD.replace(regex, '');
-          return item;
+        //Bazen ismin önune -R konabiliyor single comp için
+        if(!isSetComponent) {
+          const suffixes = ["-R", "-E", "-BK", "BL", "P", "N"];
+          const regex = new RegExp(`(${suffixes.join('|')})$`);
+          if(regex && componentType === ComponentType.SINGLE_COMPONENT) {
+            item.KOD = item.KOD.replace(regex, '');
+            return item;
+          }
         }
           return item;
       });
@@ -79,103 +97,85 @@ export class WeightStore  implements OnDestroy{
     });
   }
 
-  public setWeight(): void {
-    if (this.weightSub) {
-      this.weightSub.unsubscribe();
-    }
-
-    this.weightSub = this.combineStateWithAnyState$(this.weightState$)
-    .pipe(
-      map(([state, weight]) => this.mergeStateWithWeight(state, weight)),
-      tap(data => this.productStore.updateState(data))
-    )
-    .subscribe();
-  }
-
   public importWeightData(data: any) {
-    const parts = data[0].KOD.split('-');
-    const suffix = parts[1];
-    const modifiedData = this.modifyWeightData(data, (suffix || ''));
+    console.log(data)
+    //Fix empty value or No KOD issue
+    const filteredArray = data.filter((item: ObjectMap) => {
+      return Object.keys(item).length > 0 && item.hasOwnProperty("KOD");
+    });
+
+    const modifiedData = this.modifyWeightData(filteredArray);
     this.updateWeightState(modifiedData)
   }
 
   private modifyWeightData(data: ObjectMap[], suffix?: string): ObjectMap[] {
-    if(suffix) {
-      switch(suffix) {
-        case 'P':
-          suffix = '';
-          break;
-        case 'E':
-          suffix = '';
-          break;
-        case 'R':
-          suffix = '';
-          break;
-        case 'BK':
-          suffix = '';
-          break;
-        case 'BL':
-          suffix = '';
-          break;
-        case 'N':
-          suffix = '';
-          break;
-      }
-    }
-
     //Fix TOPLAM issue
     const updatedArray = this.updateKODValues(data);
 
-    //Fix empty value or No KOD issue
-    const filteredArray = updatedArray.filter((item: ObjectMap) => {
-      return Object.keys(item).length > 0 && item.hasOwnProperty("KOD");
-    });
-    const modifiedArray = filteredArray.map(item => {
+    const modifiedArray = updatedArray.map(item => {
       const modifiedItem:any = {};
       for (const key in item) {
           if (item.hasOwnProperty(key)) {
             //Replace the space eg. '14 ayar'
               const newKey: any = key.replace(/\s+/g, '');
               modifiedItem[newKey] = item[key];
-
-              if (key === "KOD") {
-
-              }
-               //This regex for making 2 groups with non-digit and digit groups.
-               const kod = item['KOD'];
-
-              const match = kod.match(/(\D+)(\d+)/);
-              if (match) {
-                const word = match[1];
-                let number = Number(match[2]);
-
-                 if (number > 9) {
-                     const kodWithoutZero = word + number + '-' +suffix;
-                     if (kodWithoutZero.length !== modifiedItem['KOD'].length) {
-                      modifiedItem['KOD'] = kodWithoutZero;
-                    }
-
-                 }
-              }
           }
       }
       return modifiedItem;
     });
 
+    //This regex for making 2 groups with non-digit and digit groups. eg.FSP010 => FSP10
+    for (var i = 0; i < modifiedArray.length; i++) {
+      var kodValue = modifiedArray[i].KOD;
+
+      var parts = kodValue.split("-");
+      const match = parts[0].match(/(\D+)(\d+)/);
+      if (match) {
+        const word = match[1];
+        let number = Number(match[2]);
+        let suffix = parts[1];
+        // if(suffix) {
+        //   switch(suffix) {
+        //     case 'P':
+        //       suffix = '';
+        //       break;
+        //     case 'E':
+        //       suffix = '';
+        //       break;
+        //     case 'R':
+        //       suffix = '';
+        //       break;
+        //     case 'BK':
+        //       suffix = '';
+        //       break;
+        //     case 'BL':
+        //       suffix = '';
+        //       break;
+        //     case 'N':
+        //       suffix = '';
+        //       break;
+        //   }
+        // }
+
+          if (number > 9) {
+              const kodWithoutZero = word + number + (suffix ? ('-' + suffix) : '');
+              if (kodWithoutZero.length !== modifiedArray[i].KOD.length) {
+                modifiedArray[i].KOD = kodWithoutZero;
+            }
+
+          }
+      }
+  }
     return modifiedArray;
   }
 
    updateKODValues(inputArray: any[]): any[] {
     //This method is for if KOD is 'TOPLAM'
-    let currentName: string | null = null;
-
+    const regex = /-.*/;
     for (let i = 0; i < inputArray.length; i++) {
       const currentItem = inputArray[i];
-
       if (currentItem.KOD === "TOPLAM") {
-        if (currentName !== null) {
-          inputArray[i].KOD = currentName;
-        }
+          inputArray[i].KOD = inputArray[i-1].KOD.replace(regex, '');;
       }
     }
 

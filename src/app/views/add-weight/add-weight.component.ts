@@ -13,6 +13,7 @@ import { WeightStore } from 'src/app/stores/weight.store';
 export class AddWeightComponent {
 
   isDisable: boolean = true;
+  isSetComponent: boolean = false;
 
   productWeights$!: Observable<any>;
 
@@ -30,7 +31,7 @@ export class AddWeightComponent {
   }
 
   setWeight() {
-    this.weightStore.setWeight();
+    this.weightStore.setWeight(this.isSetComponent);
     this.isDisable = true;
 
     if (this.fileInput) {

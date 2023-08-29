@@ -30,8 +30,6 @@ export class HalfsetService extends CategoryLogicActionHandler implements ICateg
     const quantity = Number(data.quantity ? data.quantity : 0);
     const arr = [];
 
-    console.log(data)
-
     for(let i = 0; i < quantity; i++) {
       const newObj = {
         category: data.category,
