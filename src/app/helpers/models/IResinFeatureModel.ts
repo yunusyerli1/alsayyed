@@ -21,7 +21,7 @@ export interface IResinFeature {
     fullsetAttribute?: string;
     quantity?: string;
     componentType: number;
-    productCategory?: string;
+    productCategory?: string; //Ecommerce Website Procuct Category
     externalId?: string;
     postfix?: AutoCompleteModel[];
     weightResin?: number;

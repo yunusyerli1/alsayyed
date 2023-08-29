@@ -27,14 +27,16 @@ export class RelationStore {
   //Returns data for exporting
   get exportedData(): any {
     const relationships = this.state;
+    console.log(relationships)
     const newArr = relationships.map((relation: any) => {
       return {
-        'Name(Dont Import)': relation.name,
         'External ID': relation.externalId,
+        'Name(Dont Import)': relation.name,
         'Related Combined': relation.combinedRelated,
       }
     })
-    return newArr
+
+    return newArr;
   }
 
   setRelationships() {

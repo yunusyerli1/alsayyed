@@ -66,6 +66,7 @@ export class ProductStore {
         'Design Brand': product.designBrand,
         'Design Code': product.designCode,
         'Website Product Category / External Id': product.productCategory,
+        'Ext Id': product.externalId,
         'Product Attributes/Attribute': product.attribute,
         'Product Attributes/Attribute/Value': product.attributeValue,
         'Raw material': product.rawMaterial,
@@ -145,6 +146,20 @@ export class ProductStore {
         'External ID': product.externalId,
         'Name': product.designCode,
         'is_published': 'TRUE'
+      }
+    })
+    return newArr
+  }
+
+  //Returns ipublished data for exporting
+  get exportedEcommerceCategoryData(): any {
+    const products = this.state;
+    const newArr = products.map((product: IResinFeature) => {
+      return {
+        'External ID': product.externalId,
+        'Name (Dont Import)': product.designCode,
+        'Design Category (Dont Import)': product.designCategory,
+        'Website Product Category / External Id': product.productCategory
       }
     })
     return newArr

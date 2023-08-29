@@ -34,5 +34,9 @@ export class ListDownloadComponent {
     this.excelService.exportJSONToExcel(this.productStore.exportedPublishedData, "isPublished.xlsx")
   }
 
+  downloadWebCategories() {
+    this.excelService.exportJSONToExcel(this.productStore.exportedEcommerceCategoryData, "EcommerceCategories.xlsx")
+  }
+
 
 }
