@@ -13,6 +13,8 @@ export class RelationStore {
   private relationStore = new BehaviorSubject<any>([]);
   public relationState$ = this.relationStore.asObservable();
 
+  relatedData: any = {};
+
   constructor(private productStore: ProductStore) {
   }
 
@@ -64,27 +66,30 @@ export class RelationStore {
       })
     })
 
-    const relatedData: any = {};
+
 
     for (const item of filteredItems) {
       const { designCode, externalId } = item;
       const baseCode = designCode.split('-')[0];
 
       const relatedObj = filteredItems.filter( (item : any) => item.designCode !== designCode && item.designCode.includes(baseCode))
-      relatedData[designCode] = {
+      this.relatedData[designCode] = {
         designCode,
         externalId,
         related: relatedObj
       };
     }
 
-    const modifiedArray = Object.keys(relatedData).map((key:any) => {
+    console.log(this.relatedData)
+
+    const modifiedArray = Object.keys(this.relatedData).map((key:any) => {
       return {
-        name: relatedData[key].designCode,
-        externalId: relatedData[key].externalId,
-        combinedRelated: relatedData[key].related.map((relatedItem: any) => relatedItem.externalId).join(', ')
+        name: this.relatedData[key].designCode,
+        externalId: this.relatedData[key].externalId,
+        combinedRelated: this.relatedData[key].related.map((relatedItem: any) => relatedItem.externalId).join(',')
       }
     })
+    console.log(modifiedArray)
     this.updateRelationState(modifiedArray);
   }
 

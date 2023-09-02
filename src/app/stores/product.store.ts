@@ -118,9 +118,25 @@ export class ProductStore {
   get exportedImageImportData(): any {
   const products = this.state;
   const newArr = products.map((product: IResinFeature) => {
-    const category = product.category === 'Bangle' ? 'Bracelets' : product.category;
+    let category = product.category;
+    let imgFormat = '-1.jpg';
+    switch(product.category) {
+      case 'Bangle':
+        category = 'Bracelets';
+        break;
+      case 'Bangle Set':
+        category = 'Bracelet';
+        break;
+      case 'Halfset':
+        category = 'Halfsets';
+        imgFormat = '.jpg';
+        break;
+      default:
+        category = product.category;
+        break;
+    }
     return {
-      'Product Code,URL': product.designCode + ',' + 'http://images.alsayyeddesign.com/' + category + '/' + product.designBrand + '/' + product.designCode + '-1.jpg'
+      'Product Code,URL': product.designCode + ',' + 'http://images.alsayyeddesign.com/' + category + '/' + product.designBrand + '/' + product.designCode + imgFormat
     }
   })
     return newArr
@@ -130,7 +146,21 @@ export class ProductStore {
   get exportedImageImportExtraData(): any {
     const products = this.state;
     const newArr = products.map((product: IResinFeature) => {
-      const category = product.category === 'Bangle' ? 'Bracelets' : product.category;
+    let category = product.category;
+    switch(product.category) {
+      case 'Bangle':
+        category = 'Bracelets';
+        break;
+      case 'Bangle Set':
+        category = 'Bracelet';
+        break;
+      case 'Halfset':
+        category = 'Halfsets';
+        break;
+      default:
+        category = product.category;
+        break;
+    }
       return {
         'Product Code,URL': product.designCode + ',' + 'http://images.alsayyeddesign.com/' + category + '/' + product.designBrand + '/' + product.designCode + '-2.jpg'
       }
@@ -158,7 +188,6 @@ export class ProductStore {
       return {
         'External ID': product.externalId,
         'Name (Dont Import)': product.designCode,
-        'Design Category (Dont Import)': product.designCategory,
         'Website Product Category / External Id': product.productCategory
       }
     })

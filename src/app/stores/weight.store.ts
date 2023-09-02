@@ -59,8 +59,6 @@ export class WeightStore  implements OnDestroy{
     if (weight.length === 0 || state.length === 0) {
       return state;
     }
-console.log(weight)
-    console.log(weight)
 
     return state.map((stateObj: any) => {
       const componentType = stateObj.componentType;
@@ -98,7 +96,6 @@ console.log(weight)
   }
 
   public importWeightData(data: any) {
-    console.log(data)
     //Fix empty value or No KOD issue
     const filteredArray = data.filter((item: ObjectMap) => {
       return Object.keys(item).length > 0 && item.hasOwnProperty("KOD");

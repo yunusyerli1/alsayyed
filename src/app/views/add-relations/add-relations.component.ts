@@ -26,6 +26,6 @@ export class AddRelationsComponent {
   }
   exportRelations() {
     const relations = this.relationStore.exportedData;
-    this.excelService.exportJSONToExcel(relations, "relationships.xlsx")
+    this.excelService.exportJSONToExcel(relations, "Alternatives or Related Product Import.xlsx")
   }
 }

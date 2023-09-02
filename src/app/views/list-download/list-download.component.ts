@@ -23,11 +23,11 @@ export class ListDownloadComponent {
   }
 
   downloadImageImport() {
-    this.excelService.exportJSONToExcel(this.productStore.exportedImageImportData, "imageImport.xlsx")
+    this.excelService.exportJSONToExcel(this.productStore.exportedImageImportData, "imageImport.csv")
   }
 
   downloadImageImportExtra() {
-    this.excelService.exportJSONToExcel(this.productStore.exportedImageImportExtraData, "imageExtraImport.xlsx")
+    this.excelService.exportJSONToExcel(this.productStore.exportedImageImportExtraData, "imageExtraImport.csv")
   }
 
   downloadIsPublished() {
