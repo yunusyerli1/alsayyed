@@ -27,7 +27,6 @@ export class WeightStore  implements OnDestroy{
   }
 
   public updateWeightState(data: any): void {
-    console.log(data)
     this.weightStore.next(data);
   }
 
