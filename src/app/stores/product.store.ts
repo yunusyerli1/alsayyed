@@ -118,7 +118,7 @@ export class ProductStore {
   get exportedImageImportData(): any {
   const products = this.state;
   const newArr = products.map((product: IResinFeature) => {
-    let category = product.category;
+    let category = product.category + 's';
     let imgFormat = '-1.jpg';
     switch(product.category) {
       case 'Bangle':
@@ -132,7 +132,7 @@ export class ProductStore {
         imgFormat = '.jpg';
         break;
       default:
-        category = product.category;
+        category = product.category + 's';
         break;
     }
     return {
