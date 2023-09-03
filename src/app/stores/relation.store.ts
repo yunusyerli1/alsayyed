@@ -29,7 +29,6 @@ export class RelationStore {
   //Returns data for exporting
   get exportedData(): any {
     const relationships = this.state;
-    console.log(relationships)
     const newArr = relationships.map((relation: any) => {
       return {
         'External ID': relation.externalId,
@@ -80,8 +79,6 @@ export class RelationStore {
       };
     }
 
-    console.log(this.relatedData)
-
     const modifiedArray = Object.keys(this.relatedData).map((key:any) => {
       return {
         name: this.relatedData[key].designCode,
@@ -89,7 +86,6 @@ export class RelationStore {
         combinedRelated: this.relatedData[key].related.map((relatedItem: any) => relatedItem.externalId).join(',')
       }
     })
-    console.log(modifiedArray)
     this.updateRelationState(modifiedArray);
   }
 
