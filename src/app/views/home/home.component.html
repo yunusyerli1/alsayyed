@@ -1,4 +1,4 @@
-<div class="mt-2">
+<div class="mt-2" style="overflow-x: hidden;">
   <h1>Add Products</h1>
   <form class="mt-3" [formGroup]="listFirstForm" (ngSubmit)="onSubmit()">
     <div class="row row-cols-4">
@@ -55,6 +55,7 @@
     <div class="d-flex justify-content-between my-3">
       <button class="btn btn-sm btn-danger px-3" type="button" [disabled]="!listFirstForm.value.designBrand" (click)="deleteBrand()">Delete Brand</button>
       <div class="d-flex justify-content-end gap-3">
+        <button class="btn btn-sm btn-primary px-3" (click)="editTable()">Edit Table</button>
         <button class="btn btn-sm btn-primary px-3" (click)="exportTableToExcel()">Export CSV</button>
         <button class="btn btn-sm btn-primary px-3" (click)="exportToExcel()">Export Excel</button>
 
@@ -66,10 +67,26 @@
 
   </form>
 
+
 </div>
 
-<div style="max-height: 500px; overflow-y: auto;">
-  <app-table></app-table>
-</div>
+<ng-container *ngIf="isEdit">
+  <div class="mt-2" style="max-height: 420px; overflow-y: auto;" *ngIf="(products$ | async) as products">
+    <app-editable-table *ngIf="products.length"
+      [tableData]="products"
+      (dataChanged)="onDataChanged($event)"
+      (dataDeleted)="onDataDeleted($event)">
+    </app-editable-table>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!isEdit">
+  <div style="max-height: 500px; overflow-y: auto;">
+    <app-table></app-table>
+  </div>
+</ng-container>
+
+
+
 
 

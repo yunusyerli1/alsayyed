@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class EditableTableComponent {
   @Input() tableData!: any[]
   @Output() dataChanged = new EventEmitter<any[]>();
-
+  @Output() dataDeleted = new EventEmitter<string>();
 
   tracker= (i: any) => i;
 
@@ -25,6 +25,12 @@ export class EditableTableComponent {
       return index !== rowIndex? row: {...row, [propertyKey]: e.target.value}
     })
     this.dataChanged.emit(newValue);
+  }
+
+  deleteRow(row: any) {
+    console.log(row)
+    console.log(row.designCode)
+    this.dataDeleted.emit(row.designCode);
   }
 
 }

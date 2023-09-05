@@ -40,11 +40,16 @@ export class ProductStore {
     this.updateState(updatedArray);
   }
 
-  public deleteFromState(category: any) {
+  public deleteCollection(category: any) {
     const currentList = this.store.getValue();
     const filteredArray = currentList.filter((object) => object.designBrand !== category);
     this.updateState(filteredArray);
+  }
 
+  public deleteItem(designCode: string) {
+    const currentList = this.store.getValue();
+    const filteredArray = currentList.filter((object) => object.designCode !== designCode);
+    this.updateState(filteredArray);
   }
 
   private setLocalStorage(data: IResinFeature[]) {

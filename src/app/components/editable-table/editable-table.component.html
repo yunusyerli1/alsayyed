@@ -2,12 +2,14 @@
   <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col">Delete</th>
       <th scope="col" *ngFor="let key of rowKeys">{{key}}</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let row of tableData; let rowIndex = index; trackBy: tracker">
       <td>{{ rowIndex + 1 }}</td>
+      <td><a class="cpointer" (click)="deleteRow(row)" ><app-svg-image [width]="'14px'" [height]="'14px'" [iconName]="'delete-20-regular'"></app-svg-image></a></td>
       <ng-container *ngFor="let key of rowKeys; let cellIndex = index; trackBy: tracker">
         <td>
           <div class="d-flex ">

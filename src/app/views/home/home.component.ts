@@ -7,6 +7,7 @@ import { Categories } from 'src/app/helpers/contants/Categories';
 import { CategoryManager } from 'src/app/services/category.manager';
 import { ProductStore } from 'src/app/stores/product.store';
 import { deepClone } from 'src/app/helpers/object-utils';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,9 @@ export class HomeComponent {
   categories: string[] = [];
   selectedTags: AutoCompleteModel[] = [];
   isTagInputHidden: boolean = false;
+  isEdit: boolean = false;
+
+  products$!: Observable<any>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,9 +45,10 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
-    this.listFirstForm.get('rawMaterial')?.setValue(RawMaterial.YELLOW_RESIN)
-    this.listFirstForm.get('style')?.setValue("No Stone")
+    this.listFirstForm.get('rawMaterial')?.setValue(RawMaterial.YELLOW_RESIN);
+    this.listFirstForm.get('style')?.setValue("No Stone");
     this.setCategories();
+    this.products$ = this.productStore.state$;
   }
 
   changeSelection(e: any, formItem: string) {
@@ -94,7 +99,7 @@ export class HomeComponent {
 
   deleteBrand() {
     const designBrand = this.listFirstForm.value.designBrand;
-    this.productStore.deleteFromState(designBrand);
+    this.productStore.deleteCollection(designBrand);
   }
 
   exportToExcel() {
@@ -105,6 +110,18 @@ export class HomeComponent {
     /* pass here the table id */
     let tableId = document.getElementById('excel-table');
     this.excelService.exportTableToExcel(tableId, "tablodan.xlsx")
+  }
+
+  onDataChanged(event: any[]): void {
+    this.productStore.updateState(event);
+  }
+
+  onDataDeleted(designCode: string): void {
+    this.productStore.deleteItem(designCode);
+  }
+
+  editTable() {
+    this.isEdit = !this.isEdit;
   }
 
 }
