@@ -4,7 +4,6 @@ import { IResinFeature } from "../helpers/models/IResinFeatureModel";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 import { Observable, of } from "rxjs";
 import { shareReplay } from "rxjs/operators";
-import { ComponentType } from "../helpers/contants/ComponentType";
 
 const initialState: IResinFeature[] = [];
 

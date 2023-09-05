@@ -16,7 +16,7 @@ export class AppComponent {
     {
       title: "Add Products",
       icon: "home",
-      route: "list-first"
+      route: "home"
     },
     {
       title: "Add Weights",

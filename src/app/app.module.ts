@@ -13,7 +13,6 @@ import { SidebarResponsiveComponent } from './containers/sidebar-responsive/side
 import { NavbarComponent } from './containers/navbar/navbar.component';
 import { SvgImageComponent } from './components/svg-image/svg-image.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ListFirstComponent } from './views/list-first/list-first.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TagInputModule } from 'ngx-chips';
 import { ChipsTagInputComponent } from './components/chips-tag-input/chips-tag-input.component';
@@ -34,7 +33,6 @@ import { ListDownloadComponent } from './views/list-download/list-download.compo
     NotFoundComponent,
     SidebarResponsiveComponent,
     NavbarComponent,
-    ListFirstComponent,
     ChipsTagInputComponent,
     TableComponent,
     AddWeightComponent,
