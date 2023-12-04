@@ -140,7 +140,7 @@ export class ProductStore {
         break;
     }
     return {
-      'Product Code,URL': product.designCode + ',' + 'http://images.alsayyeddesign.com/' + category + '/' + product.designBrand + '/' + product.designCode + imgFormat
+      'Product Code,URL': product.designCode + ',' + 'http://upload.alsayyeddesign.com/' + category + '/' + product.designBrand + '/' + product.designCode + imgFormat
     }
   })
     return newArr
@@ -166,7 +166,7 @@ export class ProductStore {
         break;
     }
       return {
-        'Product Code,URL': product.designCode + ',' + 'http://images.alsayyeddesign.com/' + category + '/' + product.designBrand + '/' + product.designCode + '-2.jpg'
+        'Product Code,URL': product.designCode + ',' + 'http://upload.alsayyeddesign.com/' + category + '/' + product.designBrand + '/' + product.designCode + '-2.jpg'
       }
     })
     return newArr
