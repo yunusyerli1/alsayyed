@@ -69,7 +69,7 @@ export class ProductStore {
         'Design Category': product.designCategory,
         'Design Brand': product.designBrand,
         'Design Code': product.designCode,
-        'Website Product Category / External Id': product.productCategory,
+        //'Website Product Category / External Id': product.productCategory,
         'Ext Id': product.externalId,
         'Product Attributes/Attribute': product.attribute,
         'Product Attributes/Attribute/Value': product.attributeValue,
