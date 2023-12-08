@@ -125,11 +125,8 @@ export class ProductStore {
     let category = product.category + 's';
     let imgFormat = '-1.jpg';
     switch(product.category) {
-      case 'Bangle':
-        category = 'Bracelets';
-        break;
       case 'Bangle Set':
-        category = 'Bracelet';
+        category = 'Bangles';
         break;
       case 'Halfset':
         category = 'Halfsets';
@@ -150,24 +147,21 @@ export class ProductStore {
   get exportedImageImportExtraData(): any {
     const products = this.state;
     const newArr = products.map((product: IResinFeature) => {
-    let category = product.category;
-    switch(product.category) {
-      case 'Bangle':
-        category = 'Bracelets';
-        break;
-      case 'Bangle Set':
-        category = 'Bracelet';
-        break;
-      case 'Halfset':
-        category = 'Halfsets';
-        break;
-      default:
-        category = product.category;
-        break;
-    }
-      return {
-        'Product Code,URL': product.designCode + ',' + 'http://upload.alsayyeddesign.com/' + category + '/' + product.designBrand + '/' + product.designCode + '-2.jpg'
+      let category = product.category + 's';
+      switch(product.category) {
+        case 'Bangle Set':
+          category = 'Bangles';
+          break;
+        case 'Halfset':
+          category = 'Halfsets';
+          break;
+        default:
+          category = product.category;
+          break;
       }
+        return {
+          'Product Code,URL': product.designCode + ',' + 'http://upload.alsayyeddesign.com/' + category + '/' + product.designBrand + '/' + product.designCode + '-2.jpg'
+        }
     })
     return newArr
   }

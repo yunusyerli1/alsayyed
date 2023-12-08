@@ -34,7 +34,7 @@ export class HomeComponent {
 
     this.listFirstForm = this.formBuilder.group({
       category: ['', Validators.required],
-      designBrand: ['', [Validators.required, Validators.maxLength(6)]],
+      designBrand: ['', [Validators.required, Validators.maxLength(12)]],
       quantity: ['', [Validators.required, Validators.maxLength(3)]],
       style: ['', Validators.required],
       rawMaterial: ['', Validators.required],

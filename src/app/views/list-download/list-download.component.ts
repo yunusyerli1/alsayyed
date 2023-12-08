@@ -38,5 +38,13 @@ export class ListDownloadComponent {
     this.excelService.exportJSONToExcel(this.productStore.exportedEcommerceCategoryData, "EcommerceCategories.xlsx")
   }
 
+  downloadBrandRelaseDates() {
+    alert("Hazırlanmadı daha.")
+  }
+
+  downloadBrandDefaultAttr() {
+    alert("Hazırlanmadı daha.")
+  }
+
 
 }
